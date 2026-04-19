@@ -1,0 +1,4148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario de Tratamiento Oncohematológico</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2344;
+    --teal: #1a7a72;
+    --teal-light: #e8f5f3;
+    --blue: #1c4f8a;
+    --blue-light: #e8f0fb;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --dexa20: #7c3aed;
+    --dexa20-light: #ede9fe;
+    --rose: #be185d;
+    --rose-light: #fce7f3;
+    --green: #166534;
+    --green-light: #dcfce7;
+    --purple: #6d28d9;
+    --purple-light: #ede9fe;
+    --isa: #be185d;
+    --isa-light: #fce7f3;
+    --bort: #0e7490;
+    --bort-light: #e0f2fe;
+    --epo: #4338ca;
+    --epo-light: #e0e7ff;
+    --vinb: #b45309;
+    --vinb-light: #fef3c7;
+    --cyclo: #7c3aed;
+    --cyclo-light: #f5f3ff;
+    --procarb: #15803d;
+    --procarb-light: #dcfce7;
+    --pred: #0369a1;
+    --pred-light: #e0f2fe;
+    --etop: #b91c1c;
+    --etop-light: #fee2e2;
+    --mitox: #9d174d;
+    --mitox-light: #fce7f3;
+    --bleo: #1e40af;
+    --bleo-light: #dbeafe;
+    --ritux: #7e22ce;
+    --ritux-light: #f3e8ff;
+    --doxo: #c2410c;
+    --doxo-light: #ffedd5;
+    --vinc: #92400e;
+    --vinc-light: #fef3c7;
+    --beva: #1d4ed8;
+    --beva-light: #dbeafe;
+    --lons: #0f766e;
+    --lons-light: #ccfbf1;
+    --cape500: #1e40af;
+    --cape500-light: #dbeafe;
+    --cape150: #0f766e;
+    --cape150-light: #ccfbf1;
+    --cape-desat: #5b6f80;
+    --cape-desat-light: #e8edf0;
+    --etop50: #7c3aed;
+    --etop50-light: #ede9fe;
+    --etop100: #1e40af;
+    --etop100-light: #dbeafe;
+    --onda: #0f766e;
+    --onda-light: #ccfbf1;
+    --dexa8: #b45309;
+    --dexa8-light: #fef3c7;
+    --gray: #64748b;
+    --gray-light: #f1f5f9;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --text: #0f172a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f8fafc;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-icon {
+    width: 44px; height: 44px;
+    background: var(--teal);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .header p {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    margin-top: 1px;
+  }
+
+  /* LAYOUT */
+  .main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  /* FORM CARD */
+  .card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title span { font-size: 1.1rem; }
+
+  /* FORM */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .form-group select,
+  .form-group input[type="number"],
+  .form-group input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: white;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group select:focus,
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(26,122,114,0.1);
+  }
+
+  /* TOGGLE */
+  .toggle-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .toggle {
+    position: relative; width: 42px; height: 24px;
+    cursor: pointer;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; inset: 0;
+    background: #cbd5e1; border-radius: 24px;
+    transition: 0.3s;
+  }
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 3px; bottom: 3px;
+    background: white; border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle input:checked + .toggle-slider { background: var(--teal); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+  .toggle-label { font-size: 0.88rem; font-weight: 500; }
+  .filgrastim-fields { display: none; }
+  .filgrastim-fields.active { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* BUTTON */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 24px;
+    border: none; border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--teal); color: white; }
+  .btn-primary:hover { background: #15665f; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,122,114,0.3); }
+  .btn-outline {
+    background: white; color: var(--navy);
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--navy); background: var(--gray-light); }
+  .btn-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+
+  /* LEGEND */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+  .leg-hospital { background: var(--blue-light); color: var(--blue); }
+  .leg-lena { background: var(--green-light); color: var(--green); }
+  .leg-dexa-hosp { background: var(--amber-light); color: var(--amber); }
+  .leg-dexa-home { background: #fff7ed; color: #c2410c; }
+  .leg-filg { background: var(--purple-light); color: var(--purple); }
+  .leg-isa { background: var(--isa-light); color: var(--isa); }
+  .leg-bort { background: var(--bort-light); color: var(--bort); }
+  .leg-epo { background: var(--epo-light); color: var(--epo); }
+  .leg-vinb { background: var(--vinb-light); color: var(--vinb); }
+  .leg-cyclo { background: var(--cyclo-light); color: var(--cyclo); }
+  .leg-procarb { background: var(--procarb-light); color: var(--procarb); }
+  .leg-pred { background: var(--pred-light); color: var(--pred); }
+  .leg-etop { background: var(--etop-light); color: var(--etop); }
+  .leg-mitox { background: var(--mitox-light); color: var(--mitox); }
+  .leg-bleo  { background: var(--bleo-light);  color: var(--bleo); }
+  .leg-ritux { background: var(--ritux-light); color: var(--ritux); }
+  .leg-doxo  { background: var(--doxo-light);  color: var(--doxo); }
+  .leg-vinc  { background: var(--vinc-light);  color: var(--vinc); }
+
+  /* CALENDAR */
+  .calendar-wrap { overflow-x: auto; }
+  .calendar {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .calendar th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+  }
+  .calendar td {
+    width: 14.28%;
+    min-width: 120px;
+    height: 100px;
+    vertical-align: top;
+    padding: 0;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .day-cell {
+    height: 100%;
+    padding: 8px;
+    transition: background 0.15s;
+  }
+  .day-cell.empty { background: #f8fafc; }
+  .day-cell.weekend { background: #fafafa; }
+  .day-cell.active-day { background: white; }
+  .day-cell.today { background: #fffbeb; }
+
+  .day-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 6px;
+  }
+  .day-num {
+    font-size: 0.82rem; font-weight: 600; color: var(--gray);
+  }
+  .cycle-day-badge {
+    font-size: 0.65rem; font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: var(--navy); color: white;
+    opacity: 0.85;
+  }
+  .day-meds {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .med-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.68rem; font-weight: 600;
+    padding: 2px 6px; border-radius: 4px;
+    white-space: nowrap;
+  }
+  .tag-hospital { background: var(--blue-light); color: var(--blue); }
+  .tag-lena { background: var(--green-light); color: var(--green); }
+  .tag-dexa-hosp { background: var(--amber-light); color: var(--amber); }
+  .tag-dexa-home  { background: #fff7ed; color: #c2410c; }
+  .tag-dexa-home20 { background: var(--dexa20-light); color: var(--dexa20); }
+  .leg-dexa-home20 { background: var(--dexa20-light); color: var(--dexa20); }
+  .tag-filg { background: var(--purple-light); color: var(--purple); }
+  .tag-isa { background: var(--isa-light); color: var(--isa); }
+  .tag-bort { background: var(--bort-light); color: var(--bort); }
+  .tag-epo { background: var(--epo-light); color: var(--epo); }
+  .tag-vinb { background: var(--vinb-light); color: var(--vinb); }
+  .tag-cyclo { background: var(--cyclo-light); color: var(--cyclo); }
+  .tag-procarb { background: var(--procarb-light); color: var(--procarb); }
+  .tag-pred { background: var(--pred-light); color: var(--pred); }
+  .tag-etop { background: var(--etop-light); color: var(--etop); }
+  .tag-mitox { background: var(--mitox-light); color: var(--mitox); }
+  .tag-bleo  { background: var(--bleo-light);  color: var(--bleo); }
+  .tag-ritux { background: var(--ritux-light); color: var(--ritux); }
+  .tag-doxo  { background: var(--doxo-light);  color: var(--doxo); }
+  .tag-vinc  { background: var(--vinc-light);  color: var(--vinc); }
+  .tag-beva  { background: var(--beva-light);  color: var(--beva); }
+  .tag-lons  { background: var(--lons-light);  color: var(--lons); }
+  .leg-beva  { background: var(--beva-light);  color: var(--beva); }
+  .leg-lons   { background: var(--lons-light);  color: var(--lons); }
+  /* HER2 protocol tags */
+  .tag-trast  { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+  .leg-trast  { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+  .leg-tuca   { background: #fdf2f8; color: #be185d; border: 1px solid #f9a8d4; }
+  .leg-cape500 { background: var(--cape500-light); color: var(--cape500); }
+  .leg-cape150 { background: var(--cape150-light); color: var(--cape150); }
+  .tag-cape500 { background: var(--cape500-light); color: var(--cape500); font-weight:700; }
+  .tag-cape150 { background: var(--cape150-light); color: var(--cape150); font-weight:700; }
+
+  /* CAPECITABINA cell meal blocks */
+  .cape-meal-block {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 3px 4px; border-radius: 6px; margin-bottom: 3px;
+  }
+  .cape-meal-block.breakfast { background: #fefce8; border-left: 3px solid #eab308; }
+  .cape-meal-block.dinner    { background: #fdf4ff; border-left: 3px solid #a855f7; }
+  .cape-meal-label {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1px;
+  }
+  .cape-meal-block.breakfast .cape-meal-label { color: #a16207; }
+  .cape-meal-block.dinner    .cape-meal-label { color: #7e22ce; }
+  .cape-pills { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
+  .cape-pill-row { display: flex; align-items: center; gap: 4px; margin-bottom: 2px; }
+  .cape-pill-label { font-size: 0.58rem; font-weight: 700; min-width: 28px; }
+  .pill-500 {
+    display: inline-block;
+    width: 18px; height: 10px;
+    background: var(--cape500);
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .pill-150 {
+    display: inline-block;
+    width: 13px; height: 7px;
+    background: var(--cape150);
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  @media print {
+    .pill-500 { width: 16px !important; height: 9px !important; }
+    .pill-150 { width: 11px !important; height: 7px !important; }
+    .cape-pill-label { font-size: 0.54rem !important; }
+  }
+
+  @media print {
+    .tag-cape500, .tag-cape150 { font-size: 0.6rem !important; }
+  }
+
+  /* SUMMARY TABLE */
+  .summary { margin-top: 24px; }
+  .summary h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .sum-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .sum-table th {
+    text-align: left; padding: 8px 10px;
+    background: var(--gray-light);
+    font-weight: 600; font-size: 0.74rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+  .sum-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .sum-table tr:last-child td { border-bottom: none; }
+
+  /* PATIENT INFO */
+  .patient-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px; margin-bottom: 8px;
+  }
+  .patient-info-grid .form-group input {
+    font-size: 0.9rem;
+  }
+
+  /* RESULT HEADER (legacy) */
+  .result-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
+  }
+  .result-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--navy); line-height: 1.5; }
+
+  /* ───────── Result header v2 (3 zonas + acciones) ───────── */
+  .result-header-v2 {
+    display: grid;
+    grid-template-columns: minmax(210px, 1.05fr) minmax(220px, 1.3fr) minmax(220px, 1.3fr) auto;
+    gap: 14px; align-items: stretch;
+    padding: 10px 12px; margin-bottom: 10px;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border: 1.5px solid #e2e8f0; border-radius: 12px;
+  }
+  .result-header-v2 > div {
+    padding: 8px 10px; border-radius: 8px;
+  }
+  .rh-hospital {
+    display: flex; flex-direction: column; gap: 6px; align-items: center;
+    justify-content: center;
+    border-right: 1.5px solid #e2e8f0;
+  }
+  .rh-logo { width: 100%; display: flex; justify-content: center; }
+  .rh-logo img {
+    width: auto; max-width: 100%; height: auto; max-height: 72px;
+    object-fit: contain; display: block;
+  }
+  .rh-contact {
+    font-size: 0.7rem; color: var(--gray); line-height: 1.35;
+    text-align: center;
+  }
+  .rh-contact-line strong { color: var(--navy); }
+
+  .rh-patient { border-right: 1.5px solid #e2e8f0; }
+  .rh-patient-label, .rh-proto-top {
+    font-size: 0.62rem; font-weight: 700; color: var(--gray);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .rh-patient-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem; color: var(--navy); line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .rh-patient-meta {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .rh-chip {
+    font-size: 0.72rem; font-weight: 600; color: var(--navy);
+    background: var(--gray-light); padding: 3px 9px; border-radius: 12px;
+  }
+  .rh-chip-age { background: #dbeafe; color: #1e3a8a; }
+
+  .rh-protocol { display: flex; flex-direction: column; gap: 4px; }
+  .rh-proto-top { display: flex; align-items: center; gap: 8px; margin: 0; }
+  .rh-proto-top .protocol-badge {
+    font-size: 0.78rem; padding: 3px 10px;
+  }
+  .rh-phase {
+    font-size: 0.72rem; font-weight: 700; color: #6d28d9;
+    background: #ede9fe; padding: 2px 8px; border-radius: 4px;
+    text-transform: none; letter-spacing: 0;
+  }
+  .rh-cycle-num {
+    font-size: 0.85rem; color: var(--gray); margin-top: 2px;
+  }
+  .rh-cycle-num strong {
+    font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy);
+    margin-left: 4px;
+  }
+  .rh-dates {
+    display: flex; flex-direction: column; gap: 2px;
+    font-size: 0.72rem; color: var(--gray); margin-top: 4px;
+  }
+  .rh-dates strong { color: var(--navy); }
+  .rh-gen {
+    font-size: 0.62rem; color: #94a3b8; margin-top: 4px; font-style: italic;
+  }
+  .rh-actions {
+    display: flex; flex-direction: column; gap: 6px; align-self: center;
+    border-left: 1.5px solid #e2e8f0; padding-left: 14px;
+  }
+
+  /* Print: hospital block siempre visible, ajustes finos */
+  @media print {
+    .result-header-v2 {
+      grid-template-columns: 1fr 1.2fr 1.2fr !important;
+      page-break-inside: avoid !important; break-inside: avoid !important;
+      padding: 6px 10px !important; margin-bottom: 6px !important;
+      background: #ffffff !important;
+    }
+    .rh-actions { display: none !important; }
+    .rh-logo img { max-width: 100% !important; max-height: 58px !important; }
+    .rh-patient-name { font-size: 1.05rem !important; }
+    .rh-cycle-num strong { font-size: 1.1rem !important; }
+    .rh-contact { font-size: 0.6rem !important; }
+    .rh-chip { font-size: 0.62rem !important; padding: 2px 7px !important; }
+    .rh-dates { font-size: 0.62rem !important; }
+  }
+
+  /* Spacer visible solo en impresión (margen superior pág.2) */
+  .print-page2-spacer { display: none; }
+
+  /* PRINT */
+  @page { size: A4 landscape; margin: 5mm 7mm; }
+
+  @media print {
+    * { print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
+
+    body {
+      background: white !important;
+      margin: 0; padding: 0;
+      font-size: 0.74rem !important;
+    }
+
+    /* Ocultar formulario, solo mostrar resultado */
+    .form-section { display: none !important; }
+    .no-print     { display: none !important; }
+    /* Ocultar leyenda de colores en impresión (redundante con el propio calendario) */
+    .legend       { display: none !important; }
+    /* Ocultar botón eliminar en impresión */
+    .del-btn, .meal-del-btn { display: none !important; }
+
+    /* ── Header de página oculta en impresión ── */
+    .header { display: none !important; }
+
+    .main { padding: 3px 0 0 0 !important; max-width: 100% !important; }
+
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+      padding: 4px 8px !important;
+      margin-bottom: 4px !important;
+      border-radius: 5px !important;
+    }
+
+    /* ── Cabecera resultado ── */
+    #calendarCard { break-inside: auto !important; }
+    .result-header {
+      margin-bottom: 6px !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+    .result-title  { font-size: 0.82rem !important; line-height: 1.45 !important; }
+    .result-title span[style] { font-size: 0.68rem !important; }
+    .protocol-badge { font-size: 0.72rem !important; padding: 2px 7px !important; }
+
+    .legend {
+      gap: 4px !important;
+      margin-bottom: 6px !important;
+      break-inside: avoid !important;
+    }
+    .legend-item {
+      font-size: 0.6rem !important;
+      padding: 2px 6px !important;
+      border-radius: 8px !important;
+    }
+
+    /* ── Tabla calendario ── */
+    .calendar-wrap {
+      overflow: visible !important;
+    }
+    table.calendar {
+      width: 100% !important;
+      table-layout: fixed !important;
+    }
+    .calendar th {
+      font-size: 0.6rem !important;
+      padding: 4px 2px !important;
+      letter-spacing: 0.01em !important;
+    }
+    .calendar td {
+      min-width: 0 !important;
+      width: 14.285% !important;
+      height: 62px !important;
+      border: 1px solid #ccc !important;
+      vertical-align: top !important;
+    }
+    .day-cell {
+      padding: 3px 3px !important;
+      height: 100% !important;
+    }
+    .day-cell.empty   { background: #f9fafb !important; }
+    .day-cell.weekend { background: #f5f5f5 !important; }
+    .day-cell.today   { background: #fffbeb !important; }
+    .day-header   { margin-bottom: 2px !important; }
+    .day-num      { font-size: 0.6rem !important; }
+    .cycle-day-badge { font-size: 0.52rem !important; padding: 1px 4px !important; }
+    .day-meds     { gap: 2px !important; }
+    .med-tag      { font-size: 0.58rem !important; padding: 2px 4px !important; border-radius: 3px !important; }
+
+    /* Bloques de pastillas en impresión */
+    .cape-meal-block { padding: 3px 4px !important; margin-bottom: 2px !important; }
+    .cape-meal-label { font-size: 0.54rem !important; }
+    .cape-pill-row   { gap: 2px !important; margin-bottom: 1px !important; }
+    .cape-pill-label { font-size: 0.5rem !important; min-width: 24px !important; }
+
+    tr { break-inside: avoid !important; page-break-inside: avoid !important; }
+
+    /* ── Notas: justo después del calendario ── */
+    .print-notes {
+      font-size: 0.58rem !important;
+      padding: 4px 8px !important;
+      margin-top: 4px !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+    .print-notes ul { margin-top: 2px !important; line-height: 1.35 !important; padding-left:14px !important; }
+    .print-notes li { margin-bottom: 1px !important; }
+
+    /* ── Resumen del ciclo ──
+       No se parte por la mitad: si no cabe entero en la página actual,
+       se mueve completo a la página siguiente. */
+    .print-page2 {
+      margin-top: 10px !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+    /* Spacer que solo se muestra al inicio de página 2 en impresión */
+    .print-page2-spacer { display: block; height: 10mm; }
+
+    .summary       { margin-top: 0 !important; }
+    .summary h3    { font-size: 0.8rem !important; margin-bottom: 5px !important; }
+    .sum-table     { font-size: 0.66rem !important; }
+    .sum-table th  { padding: 3px 6px !important; font-size: 0.6rem !important; }
+    .sum-table td  { padding: 3px 6px !important; }
+
+  }
+
+  .no-calendar {
+    text-align: center; padding: 40px;
+    color: var(--gray); font-size: 0.9rem;
+  }
+  .no-calendar .big-icon { font-size: 3rem; margin-bottom: 10px; }
+
+  /* Protocol badge */
+  .protocol-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 6px;
+    background: var(--navy); color: white;
+    font-size: 0.8rem; font-weight: 600;
+  }
+
+  /* CHECKLIST */
+  .checklist-card { display: none; }
+  .checklist-card.visible { display: block; }
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
+  }
+  .ck-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .ck-item:hover { border-color: var(--teal); background: var(--teal-light); }
+  .ck-item input[type="checkbox"] { display: none; }
+  .ck-box {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid #cbd5e1; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: white;
+    transition: all 0.15s;
+  }
+  .ck-item.checked .ck-box {
+    background: var(--teal); border-color: var(--teal);
+  }
+  .ck-item.checked .ck-box::after { content: '✓'; }
+  .ck-item.checked { border-color: var(--teal); background: var(--teal-light); }
+  .ck-item.unchecked { opacity: 0.45; background: #f8fafc; }
+  .ck-label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; font-weight: 600;
+  }
+  .ck-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .ck-sublabel { font-size: 0.7rem; color: var(--gray); font-weight: 400; }
+  .ck-all-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+  .btn-xs {
+    padding: 4px 10px; font-size: 0.72rem; font-weight: 600;
+    border: 1.5px solid var(--border); border-radius: 6px;
+    background: white; cursor: pointer; transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-xs:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── DRAG & DROP ── */
+  .edit-mode-bar {
+    display: none;
+    align-items: center; gap: 10px;
+    padding: 8px 14px;
+    background: #fffbeb;
+    border: 1.5px dashed #f59e0b;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem; color: #92400e;
+    flex-wrap: wrap;
+  }
+  .edit-mode-bar.visible { display: flex; }
+  .edit-mode-bar strong { color: #78350f; }
+
+  .btn-edit-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; font-size: 0.8rem; font-weight: 600;
+    border: 1.5px solid var(--teal); border-radius: 8px;
+    background: white; color: var(--teal); cursor: pointer;
+    transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-edit-toggle:hover, .btn-edit-toggle.active {
+    background: var(--teal); color: white;
+  }
+  .btn-reset-mods {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px; font-size: 0.76rem; font-weight: 600;
+    border: 1.5px solid #f97316; border-radius: 8px;
+    background: white; color: #ea580c; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.15s;
+  }
+  .btn-reset-mods:hover { background: #fff7ed; }
+
+  /* drag-mode: cells become drop zones */
+  body.drag-mode .day-cell.active-day {
+    cursor: default;
+    transition: background 0.12s, box-shadow 0.12s;
+  }
+  body.drag-mode .day-cell.active-day.drag-over {
+    background: #e0f2fe !important;
+    box-shadow: inset 0 0 0 2px var(--teal) !important;
+  }
+  body.drag-mode .med-tag {
+    cursor: grab !important;
+  }
+  body.drag-mode .med-tag:active { cursor: grabbing !important; }
+
+  .med-tag.dragging { opacity: 0.4; }
+
+  /* ── Botón eliminar en hover (modo edición) ── */
+  .med-tag { position: relative; padding-right: 8px !important; }
+  .del-btn {
+    display: none;
+    position: absolute; top: -5px; right: -5px;
+    width: 14px; height: 14px;
+    background: #ef4444; color: white;
+    border-radius: 50%; font-size: 10px; font-weight: 700;
+    align-items: center; justify-content: center;
+    cursor: pointer; z-index: 20; line-height: 1;
+    border: 1.5px solid white;
+  }
+  body.drag-mode .med-tag:hover .del-btn { display: flex; }
+
+  /* Meal blocks arrastrables en modo edición */
+  .meal-pair-wrap { display: flex; flex-direction: column; gap: 2px; position: relative; }
+  body.drag-mode .meal-pair-wrap {
+    cursor: grab; outline: 1.5px dashed #2563eb; outline-offset: 2px;
+    border-radius: 6px;
+  }
+  body.drag-mode .meal-pair-wrap:active { cursor: grabbing; }
+  .meal-pair-wrap.dragging { opacity: 0.35; }
+  .meal-pair-del { position: absolute; top: -6px; right: -6px; z-index: 5; }
+  /* Cuando hay wrapper, los sub-bloques no son arrastrables individualmente */
+  .meal-pair-wrap .cape-meal-block { cursor: inherit !important; outline: none !important; }
+  /* Botón eliminar individual dentro del wrapper: aparece al hacer hover sobre ese sub-bloque */
+  .meal-del-single { display: none; }
+  body.drag-mode .meal-pair-wrap .cape-meal-block:hover .meal-del-single { display: inline-flex !important; }
+  body.drag-mode .cape-meal-block {
+    cursor: grab !important;
+  }
+  body.drag-mode .cape-meal-block:active { cursor: grabbing !important; }
+  .cape-meal-block.dragging { opacity: 0.35; }
+  body.drag-mode .cape-meal-block .meal-del-btn {
+    display: inline-flex !important;
+  }
+  .meal-del-btn {
+    display: none;
+    margin-left: auto;
+    width: 14px; height: 14px;
+    background: #ef4444; color: white;
+    border-radius: 50%; font-size: 10px; font-weight: 700;
+    align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0;
+    border: 1.5px solid white;
+  }
+
+
+  /* MEDICAMENTO 7 capsule shapes */
+  .capsule-100 {
+    display: inline-block;
+    width: 22px; height: 10px;
+    background: linear-gradient(90deg, var(--etop100) 50%, #3b82f6 50%);
+    border-radius: 5px;
+    border: 1.5px solid rgba(0,0,0,0.18);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .capsule-50 {
+    display: inline-block;
+    width: 16px; height: 8px;
+    background: linear-gradient(90deg, var(--etop50) 50%, #a78bfa 50%);
+    border-radius: 4px;
+    border: 1.5px solid rgba(0,0,0,0.18);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .onda-pill {
+    display: inline-block;
+    width: 13px; height: 7px;
+    background: var(--onda);
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .dexa8-pill {
+    display: inline-block;
+    width: 13px; height: 7px;
+    background: var(--dexa8);
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+  .leg-etop50  { background: var(--etop50-light);  color: var(--etop50); }
+  .leg-etop100 { background: var(--etop100-light); color: var(--etop100); }
+  .leg-onda    { background: var(--onda-light);    color: var(--onda); }
+  .leg-dexa8   { background: var(--dexa8-light);   color: var(--dexa8); }
+
+  /* ETOP meal blocks reuse cape-meal-block styles */
+  @media print {
+    .capsule-100 { width: 18px !important; height: 9px !important; }
+    .capsule-50  { width: 13px !important; height: 7px !important; }
+    .onda-pill, .dexa8-pill { width: 11px !important; height: 7px !important; }
+  }
+
+  /* Compact (medication-free) week rows: reduce caja, mantener alineación horizontal */
+  tr.week-empty td { height: 28px !important; }
+  tr.week-empty .day-cell { padding: 2px 8px !important; }
+  tr.week-empty .day-header { margin-bottom: 0 !important; }
+  tr.week-empty .day-meds { display: none !important; }
+  @media print {
+    tr.week-empty td { height: 18px !important; }
+    tr.week-empty .day-cell { padding: 1px 8px !important; }
+  }
+
+  /* Pred/Procarb pill styles */
+  .pill-pred30 {
+    display: inline-block; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--pred); border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+  .pill-pred10 {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+    background: #7dd3fc; border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+  .pill-procarb50 {
+    display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+    background: var(--procarb); border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+  /* Lonsurf pills */
+  .pill-lons20 {
+    display: inline-block; width: 18px; height: 10px; border-radius: 5px;
+    background: #1e3a8a; border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+  .pill-lons15 {
+    display: inline-block; width: 13px; height: 8px; border-radius: 4px;
+    background: #166534; border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+
+  /* ── Tucatinib pills (HER2 protocol) ── */
+  .pill-tuca150 {
+    display: inline-block; width: 17px; height: 10px; border-radius: 5px;
+    background: #be185d; border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+  .pill-tuca50 {
+    display: inline-block; width: 11px; height: 7px; border-radius: 4px;
+    background: #fda4af; border: 1.5px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.3); flex-shrink:0;
+  }
+
+  @media print {
+    .pill-pred30 { width: 12px !important; height: 12px !important; }
+    .pill-pred10 { width: 8px !important;  height: 8px !important; }
+    .pill-procarb50 { width: 10px !important; height: 10px !important; }
+    .pill-lons20 { width: 15px !important; height: 8px !important; }
+    .pill-lons15 { width: 11px !important; height: 7px !important; }
+    .pill-tuca150 { width: 14px !important; height: 8px !important; }
+    .pill-tuca50  { width: 9px  !important; height: 6px !important; }
+  }
+
+  /* ───────── Toolbar superior ───────── */
+  .top-toolbar {
+    max-width: 1200px; margin: 12px auto 0 auto; padding: 10px 16px;
+    background: white; border: 1px solid var(--gray-light); border-radius: 10px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    font-size: 0.82rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .top-toolbar .toolbar-group {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .top-toolbar label { font-weight: 600; color: var(--gray); margin: 0; }
+  .top-toolbar select {
+    padding: 4px 8px; border: 1px solid var(--gray-light); border-radius: 5px;
+    font-size: 0.8rem; background: white; cursor: pointer;
+  }
+  .top-toolbar .btn-xs {
+    padding: 4px 9px; font-size: 0.75rem; background: var(--navy); color: white;
+    border: none; border-radius: 5px; cursor: pointer;
+  }
+  .top-toolbar .btn-xs:hover { opacity: 0.85; }
+
+  /* ───────── Vista previa A4 (horizontal / landscape) ───────── */
+  body.preview-a4 .no-print { display: none !important; }
+  body.preview-a4 #result {
+    width: 297mm; max-width: 297mm; min-height: 210mm;
+    margin: 50px auto 20px auto; background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15); padding: 10mm 12mm;
+    box-sizing: border-box; font-size: 0.74rem;
+  }
+  body.preview-a4 .main > .form-section { display: none; }
+  body.preview-a4 .top-toolbar { display: none; }
+  body.preview-a4 .header { display: none; }
+  /* La cabecera v2 se renderiza igual que en impresión (visible siempre) */
+  body.preview-a4 .result-header-v2 {
+    grid-template-columns: 1fr 1.2fr 1.2fr !important;
+    padding: 6px 10px !important; margin-bottom: 6px !important;
+    background: #ffffff !important;
+  }
+  body.preview-a4 .rh-actions { display: none !important; }
+  body.preview-a4 .rh-logo img { width: 62px !important; max-height: 50px !important; }
+  body.preview-a4 .rh-patient-name { font-size: 1.05rem !important; }
+  body.preview-a4 .rh-cycle-num strong { font-size: 1.1rem !important; }
+  body.preview-a4 .rh-hospital-name { font-size: 0.74rem !important; }
+  body.preview-a4 .rh-contact { font-size: 0.62rem !important; }
+  body.preview-a4 .rh-chip { font-size: 0.62rem !important; padding: 2px 7px !important; }
+  body.preview-a4 .rh-dates { font-size: 0.62rem !important; }
+  body.preview-a4 #previewExitBar {
+    display: block !important; position: fixed; top: 0; left: 0; right: 0;
+    background: #1c4f8a; color: white; padding: 10px; text-align: center;
+    z-index: 9999; font-weight: 600; font-size: 0.85rem;
+  }
+  #previewExitBar { display: none; }
+  #previewExitBar button {
+    margin-left: 12px; padding: 4px 12px; background: white; color: var(--navy);
+    border: none; border-radius: 4px; cursor: pointer; font-weight: 600;
+  }
+
+  /* ───────── Modo alto contraste ───────── */
+  body.high-contrast {
+    background: #ffffff;
+  }
+  body.high-contrast .card,
+  body.high-contrast .day-cell.active-day {
+    border-width: 2px !important;
+    border-color: #000 !important;
+  }
+  body.high-contrast .day-num {
+    font-size: 1rem !important; font-weight: 800 !important; color: #000 !important;
+  }
+  body.high-contrast .cycle-day-badge {
+    font-size: 0.78rem !important; font-weight: 800 !important;
+    border: 1.5px solid #000 !important;
+  }
+  body.high-contrast .med-tag {
+    font-size: 0.82rem !important; font-weight: 700 !important;
+    border: 1.5px solid #000 !important;
+    filter: saturate(1.4) contrast(1.15);
+  }
+  /* Fármacos administrados en Hospital de Día: tamaño reducido en alto contraste
+     (el paciente no los autoadministra, priorizar los orales domiciliarios) */
+  body.high-contrast .med-tag.tag-dara,
+  body.high-contrast .med-tag.tag-isa,
+  body.high-contrast .med-tag.tag-bort,
+  body.high-contrast .med-tag.tag-vinb,
+  body.high-contrast .med-tag.tag-cyclo,
+  body.high-contrast .med-tag.tag-mitox,
+  body.high-contrast .med-tag.tag-bleo,
+  body.high-contrast .med-tag.tag-rtx,
+  body.high-contrast .med-tag.tag-rituxi,
+  body.high-contrast .med-tag.tag-doxo,
+  body.high-contrast .med-tag.tag-vinc,
+  body.high-contrast .med-tag.tag-beva {
+    font-size: 0.62rem !important;
+    font-weight: 600 !important;
+    padding: 2px 5px !important;
+  }
+  body.high-contrast .card-title,
+  body.high-contrast h1, body.high-contrast h3 {
+    color: #000 !important;
+  }
+  body.high-contrast .legend-item {
+    border: 1.5px solid #000 !important;
+    font-size: 0.82rem !important; font-weight: 700 !important;
+  }
+  body.high-contrast .protocol-badge {
+    border: 2px solid #000 !important; font-weight: 800 !important;
+  }
+  body.high-contrast .result-header-v2 {
+    border: 2px solid #000 !important; background: #ffffff !important;
+  }
+  body.high-contrast .rh-hospital,
+  body.high-contrast .rh-patient { border-right-color: #000 !important; border-right-width: 2px !important; }
+  body.high-contrast .rh-patient-name,
+  body.high-contrast .rh-hospital-name,
+  body.high-contrast .rh-cycle-num strong { color: #000 !important; }
+  body.high-contrast .rh-chip {
+    border: 1.5px solid #000 !important; background: #fff !important; color: #000 !important;
+  }
+  body.high-contrast .rh-phase {
+    border: 1.5px solid #000 !important;
+  }
+  body.high-contrast .sum-table th,
+  body.high-contrast .sum-table td {
+    border: 1.5px solid #000 !important; font-size: 0.88rem !important;
+  }
+  body.high-contrast .calendar th {
+    background: #000 !important; color: #fff !important;
+    font-size: 0.92rem !important; font-weight: 800 !important;
+  }
+
+  /* ───────── Undo button ───────── */
+  .btn-undo-last {
+    padding: 5px 11px; background: #f59e0b; color: white; border: none;
+    border-radius: 5px; font-size: 0.74rem; font-weight: 600; cursor: pointer;
+    margin-left: 8px;
+  }
+  .btn-undo-last:hover { opacity: 0.9; }
+  .btn-undo-last:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .demo-calendar-card { position: relative; overflow: hidden; }
+  .demo-calendar-card > *:not(.demo-watermark) { position: relative; z-index: 2; }
+  .demo-watermark {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-32deg);
+    font-size: clamp(4.5rem, 16vw, 10rem);
+    font-weight: 900;
+    letter-spacing: 0.5rem;
+    color: rgba(15, 23, 42, 0.06);
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .demo-legal-note {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div id="previewExitBar">
+  <span>📄 Vista previa A4 — así se imprimirá el calendario</span>
+  <button onclick="togglePrintPreview(false); document.getElementById('previewToggle').checked=false;">Salir</button>
+</div>
+
+<div class="header">
+  <div class="header-icon">⚕️</div>
+  <div style="flex:1;">
+    <h1>Calendario de Tratamiento · Oncohematología</h1>
+    <p>Versión compartible de demostración · Protocolo no real · Logo personalizable</p>
+  </div>
+</div>
+
+<!-- Toolbar superior: contraste, vista previa, plantillas -->
+<div class="top-toolbar no-print">
+  <div class="toolbar-group">
+    <label>Contraste:</label>
+    <select id="contrastSelect" onchange="applyContrast(this.value)">
+      <option value="normal">Normal</option>
+      <option value="high">Alto contraste</option>
+    </select>
+  </div>
+  <div class="toolbar-group">
+    <label class="toggle" style="margin:0;">
+      <input type="checkbox" id="previewToggle" onchange="togglePrintPreview(this.checked)">
+      <span class="toggle-slider"></span>
+    </label>
+    <span>Vista previa A4</span>
+  </div>
+  <div class="toolbar-group" style="margin-left:auto;">
+    <label>Paciente:</label>
+    <select id="templateSelect" onchange="loadTemplate(this.value)">
+      <option value="">— Nuevo paciente —</option>
+    </select>
+    <button class="btn-xs" onclick="saveTemplate()">💾 Guardar</button>
+    <button class="btn-xs" onclick="deleteTemplate()">🗑 Borrar</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- FORM SECTION -->
+  <div class="form-section no-print">
+
+    <!-- Patient data -->
+    <div class="card">
+      <div class="card-title"><span>👤</span> <span>Datos del Paciente</span></div>
+      <div class="patient-info-grid">
+        <div class="form-group">
+          <label>Nombre del paciente</label>
+          <input type="text" id="patientName" placeholder="Nombre y apellidos">
+        </div>
+        <div class="form-group">
+          <label>Nº Historia Clínica</label>
+          <input type="text" id="patientHC" placeholder="Nº HC">
+        </div>
+        <div class="form-group">
+          <label>Fecha de nacimiento</label>
+          <input type="date" id="patientDOB">
+        </div>
+      </div>
+    </div>
+
+    <!-- Protocol selection -->
+    <div class="card">
+      <div class="card-title"><span>💊</span> Configuración del Protocolo</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Protocolo</label>
+          <select id="protocol" onchange="onProtocolChange()">
+            <option value="DEMO1" selected>DEMO 1 – Basado en VEPEMB</option>
+            <option value="DEMO2">DEMO 2 – Basado en TAS-BEVA</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Número de ciclo</label>
+          <input type="number" id="cycleNum" min="1" max="30" value="1" placeholder="Nº ciclo" oninput="onCycleNumInput()">
+          <div id="cycleNumWarning" style="display:none;margin-top:5px;padding:6px 10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:7px;font-size:0.78rem;color:#b91c1c;">
+            ⚠️ <strong>DEMO 1:</strong> máximo 6 ciclos.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Fecha del Día 1 del ciclo</label>
+          <input type="date" id="cycleStart">
+        </div>
+        <div class="form-group">
+          <label>Días a mostrar <span style="font-size:0.72rem;color:var(--gray);font-weight:400;">(por defecto: ciclo completo)</span></label>
+          <input type="number" id="daysToShow" min="1" max="28" placeholder="Todos" style="width:100%;" oninput="updateOndaDayOptions()">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🖼️</span> Logo para la versión DEMO</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:12px;">
+        Suba un logo en formato <strong>PNG, JPG, WEBP o SVG</strong> (recomendado: fondo transparente y proporción horizontal).
+      </p>
+      <div class="form-group">
+        <label>Archivo de logo</label>
+        <input type="file" id="demoLogoInput" accept=".png,.jpg,.jpeg,.webp,.svg,image/png,image/jpeg,image/webp,image/svg+xml" onchange="handleDemoLogoUpload(event)">
+        <div id="demoLogoStatus" style="margin-top:6px;font-size:0.75rem;color:var(--gray);">No hay logo cargado. Se usará un logo DEMO por defecto.</div>
+      </div>
+    </div>
+
+    <!-- Checklist de fármacos -->
+    <div class="card checklist-card" id="checklistCard">
+      <div class="card-title"><span>✅</span> Fármacos activos en este paciente</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:12px;">
+        Desmarque los fármacos suspendidos por toxicidad o reacción adversa. Solo los marcados aparecerán en el calendario.
+      </p>
+      <div class="ck-all-btns">
+        <button class="btn-xs" onclick="checkAll(true)">Marcar todos</button>
+        <button class="btn-xs" onclick="checkAll(false)">Desmarcar todos</button>
+      </div>
+      <div class="checklist-grid" id="checklistGrid"></div>
+    </div>
+
+    <!-- VEPEMB oral meds config card -->
+    <div class="card" id="vepembConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Medicación Oral – DEMO 1</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:14px;">
+        Configure los comprimidos de los medicamentos orales del ciclo DEMO 1.
+      </p>
+
+      <!-- Procarbazina -->
+      <div style="margin-bottom:14px;padding:12px 14px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;">
+        <div class="toggle-row" style="margin-bottom:8px;">
+          <label class="toggle">
+            <input type="checkbox" id="vepProcarbToggle" onchange="toggleVepField('vepProcarbFields')">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" style="color:var(--procarb);font-weight:700;">MEDICAMENTO 4 ORAL – indicar nº comprimidos (50mg)</span>
+        </div>
+        <div class="filgrastim-fields" id="vepProcarbFields">
+          <div class="form-group">
+            <label style="color:var(--procarb);">Comprimidos 50mg por toma (mañana, días 1–5)</label>
+            <input type="number" id="vepProcarb50" min="1" max="10" value="3" placeholder="Ej: 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Etopósido VEPEMB -->
+      <div style="margin-bottom:14px;padding:12px 14px;background:#ede9fe;border:1.5px solid #c4b5fd;border-radius:10px;">
+        <div class="toggle-row" style="margin-bottom:8px;">
+          <label class="toggle">
+            <input type="checkbox" id="vepEtopToggle" onchange="toggleVepField('vepEtopFields')">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" style="color:var(--etop50);font-weight:700;">MEDICAMENTO 7 ORAL – indicar nº cápsulas (días 15–19)</span>
+        </div>
+        <div class="filgrastim-fields" id="vepEtopFields">
+          <div class="form-group" style="margin-bottom:8px;">
+            <label style="color:var(--etop100);">Cápsulas 100mg por toma (mañana)</label>
+            <input type="number" id="vepEtop100" min="0" max="10" value="1" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:var(--etop50);">Cápsulas 50mg por toma (mañana)</label>
+            <input type="number" id="vepEtop50" min="0" max="10" value="0" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- Ondansetrón VEPEMB – independiente, días 15–19 -->
+      <div style="margin-bottom:14px;padding:12px 14px;background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;">
+        <div class="toggle-row">
+          <label class="toggle">
+            <input type="checkbox" id="vepOndaToggle">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" style="color:var(--teal);font-weight:700;">Antiemético 4mg – mañana, días 15–19 (antes de Medicamento 7)</span>
+        </div>
+      </div>
+
+      <!-- Prednisona VEPEMB -->
+      <div style="padding:12px 14px;background:#e0f2fe;border:1.5px solid #7dd3fc;border-radius:10px;">
+        <div class="toggle-row" style="margin-bottom:8px;">
+          <label class="toggle">
+            <input type="checkbox" id="vepPredToggle" onchange="toggleVepField('vepPredFields')">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" style="color:var(--pred);font-weight:700;">MEDICAMENTO 3 ORAL – indicar nº comprimidos (días 1–5)</span>
+        </div>
+        <div class="filgrastim-fields" id="vepPredFields">
+          <div class="form-group" style="margin-bottom:8px;">
+            <label style="color:var(--pred);">Comprimidos 30mg por toma (mañana)</label>
+            <input type="number" id="vepPred30" min="0" max="10" value="1" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#0369a1;">Comprimidos 10mg por toma (mañana)</label>
+            <input type="number" id="vepPred10" min="0" max="10" value="0" placeholder="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R-CHOP Prednisona config card -->
+    <div class="card" id="rchopConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Dosificación Prednisona – R-CHOP</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:14px;">
+        Indique el número de comprimidos de cada presentación (toma única por la mañana, días 2–5).
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label style="color:var(--pred);">Comprimidos 30mg</label>
+          <input type="number" id="rchopPred30" min="0" max="10" value="3" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label style="color:#0369a1;">Comprimidos 10mg</label>
+          <input type="number" id="rchopPred10" min="0" max="10" value="1" placeholder="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- TAS-BEVA Lonsurf config card -->
+    <div class="card" id="tasbevaConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Dosificación Medicamento 2 ORAL – DEMO 2</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:14px;">
+        Indique el número de comprimidos de cada presentación para cada toma (días 1–5 y 8–12).
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:14px;background:#fefce8;border:1.5px solid #fde047;border-radius:10px;">
+          <div style="font-weight:700;color:#a16207;font-size:0.85rem;margin-bottom:12px;">☀️ Toma Mañana</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:var(--lons);">Comprimidos 20mg</label>
+            <input type="number" id="lons20B" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#0d9488;">Comprimidos 15mg</label>
+            <input type="number" id="lons15B" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+        <div style="padding:14px;background:#fdf4ff;border:1.5px solid #d8b4fe;border-radius:10px;">
+          <div style="font-weight:700;color:#7e22ce;font-size:0.85rem;margin-bottom:12px;">🌙 Toma Cena</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:var(--lons);">Comprimidos 20mg</label>
+            <input type="number" id="lons20D" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#0d9488;">Comprimidos 15mg</label>
+            <input type="number" id="lons15D" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPECITABINA config card -->
+    <div class="card" id="capeConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Dosificación CAPECITABINA</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:16px;">
+        Indique el número de comprimidos de cada presentación para cada toma.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:14px;background:#fefce8;border:1.5px solid #fde047;border-radius:10px;">
+          <div style="font-weight:700;color:#a16207;font-size:0.85rem;margin-bottom:12px;">☀️ Toma del desayuno</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:#92400e;">Comprimidos 500 mg</label>
+            <input type="number" id="cape500B" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#92400e;">Comprimidos 150 mg</label>
+            <input type="number" id="cape150B" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+        <div style="padding:14px;background:#fdf4ff;border:1.5px solid #d8b4fe;border-radius:10px;">
+          <div style="font-weight:700;color:#7e22ce;font-size:0.85rem;margin-bottom:12px;">🌙 Toma de la cena</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:#6b21a8;">Comprimidos 500 mg</label>
+            <input type="number" id="cape500D" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#6b21a8;">Comprimidos 150 mg</label>
+            <input type="number" id="cape150D" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TUCATINIB config card (HER2 protocol) -->
+    <div class="card" id="tucaConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Dosificación TUCATINIB</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:16px;">
+        Indique el n.º de comprimidos de cada presentación para cada toma (dosis habitual: 300 mg = 2 comp. de 150 mg, dos veces al día).
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:14px;background:#fdf2f8;border:1.5px solid #f9a8d4;border-radius:10px;">
+          <div style="font-weight:700;color:#be185d;font-size:0.85rem;margin-bottom:12px;">☀️ Toma de mañana</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:#9d174d;">Comprimidos 150 mg</label>
+            <input type="number" id="tuca150B" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#9d174d;">Comprimidos 50 mg</label>
+            <input type="number" id="tuca50B" min="0" max="10" value="0" placeholder="0">
+          </div>
+        </div>
+        <div style="padding:14px;background:#fdf2f8;border:1.5px solid #f9a8d4;border-radius:10px;">
+          <div style="font-weight:700;color:#be185d;font-size:0.85rem;margin-bottom:12px;">🌙 Toma de noche</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:#9d174d;">Comprimidos 150 mg</label>
+            <input type="number" id="tuca150D" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:#9d174d;">Comprimidos 50 mg</label>
+            <input type="number" id="tuca50D" min="0" max="10" value="0" placeholder="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDICAMENTO 7 ORAL config card -->
+    <div class="card" id="etopConfigCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Configuración MEDICAMENTO 7 ORAL</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:16px;">
+        Configure la duración del ciclo, días de tratamiento y dosificación.
+      </p>
+
+      <!-- Cycle length -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+        <div class="form-group">
+          <label>Duración del ciclo</label>
+          <select id="etopCycleDays">
+            <option value="21">21 días</option>
+            <option value="28">28 días</option>
+          </select>
+        </div>
+        <div class="form-group" style="display:flex;flex-direction:column;justify-content:flex-end;">
+          <label style="font-size:0.78rem;color:var(--gray);">
+            Días activos: días <strong id="etopActiveDaysLabel">2 y 3</strong>
+          </label>
+        </div>
+      </div>
+
+      <!-- Etoposido doses -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+        <div style="padding:14px;background:#fefce8;border:1.5px solid #fde047;border-radius:10px;">
+          <div style="font-weight:700;color:#a16207;font-size:0.85rem;margin-bottom:12px;">☀️ Toma Mañana – MEDICAMENTO 7</div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:var(--etop100);">Cápsulas 100 mg</label>
+            <input type="number" id="etop100M" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:var(--etop50);">Cápsulas 50 mg</label>
+            <input type="number" id="etop50M" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+        <div style="padding:14px;background:#fdf4ff;border:1.5px solid #d8b4fe;border-radius:10px;" id="etopEveningBlock">
+          <div style="font-weight:700;color:#7e22ce;font-size:0.85rem;margin-bottom:12px;">🌙 Toma Noche – MEDICAMENTO 7</div>
+          <p style="font-size:0.74rem;color:var(--gray);margin-bottom:10px;">Solo si dosis/día &gt; 200mg</p>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="color:var(--etop100);">Cápsulas 100 mg</label>
+            <input type="number" id="etop100N" min="0" max="10" value="2" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label style="color:var(--etop50);">Cápsulas 50 mg</label>
+            <input type="number" id="etop50N" min="0" max="10" value="1" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dexametasona 8mg -->
+      <div style="padding:12px 14px;background:#fef9ec;border:1.5px solid #fde68a;border-radius:10px;margin-bottom:14px;">
+        <div style="font-weight:700;color:#92400e;font-size:0.85rem;margin-bottom:8px;">💊 Dexametasona 8mg (2 comp. 4mg) – Siempre Días 2 y 3</div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.82rem;">
+          <input type="checkbox" id="etopDexaDay4" onchange="toggleEtopDay4()">
+          <span>Incluir también <strong>Dexametasona en Día 4</strong></span>
+        </label>
+      </div>
+
+      <!-- Ondansetrón -->
+      <div style="padding:12px 14px;background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;">
+        <div style="font-weight:700;color:var(--teal);font-size:0.85rem;margin-bottom:10px;">💚 Ondansetrón 4mg (opcional)</div>
+        <label class="toggle-row" style="margin-bottom:10px;">
+          <label class="toggle">
+            <input type="checkbox" id="ondaToggle" onchange="toggleOnda()">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label">¿Requiere <strong>ONDANSETRÓN</strong>?</span>
+        </label>
+        <div id="ondaFields" style="display:none;margin-top:10px;display:none;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label>Tomas</label>
+              <select id="ondaTomas">
+                <option value="M">Solo antes del desayuno</option>
+                <option value="MD">Antes del desayuno y antes de la cena</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Días</label>
+              <select id="ondaDias">
+                <option value="23">Días 2 y 3</option>
+                <option value="2">Solo Día 2</option>
+                <option value="3">Solo Día 3</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuración dosis DEXAMETASONA – DRd / Dara-VRd -->
+    <div class="card" id="dexaDoseCard" style="display:none;">
+      <div class="card-title"><span>💊</span> Dosis DEXAMETASONA (domicilio)</div>
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:14px;">
+        Seleccione la dosis de dexametasona oral que toma el paciente en domicilio. Los días de hospital se mantienen con la dosis de premedicación estándar.
+      </p>
+      <div style="padding:12px 14px;background:#fffbeb;border:1.5px solid #fde047;border-radius:10px;">
+        <div style="font-weight:700;color:#a16207;font-size:0.85rem;margin-bottom:10px;">💛 DEXAMETASONA oral – domicilio</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.85rem;">
+            <input type="radio" name="dexaHomeDose" id="dexaDose40" value="40" checked onchange="onDexaDoseChange()">
+            <span><strong>40 mg</strong> (2 cápsulas de 20 mg)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.85rem;">
+            <input type="radio" name="dexaHomeDose" id="dexaDose20" value="20" onchange="onDexaDoseChange()">
+            <span><strong>20 mg</strong> (1 cápsula de 20 mg)</span>
+          </label>
+        </div>
+        <p style="font-size:0.74rem;color:var(--gray);margin-top:8px;margin-bottom:0;">
+          ⚠️ La dosis se puede ajustar por paciente. Los días programados no cambian, solo la etiqueta de dosis.
+        </p>
+      </div>
+    </div>
+
+    <!-- Medicación de Soporte -->
+    <div class="card">
+      <div class="card-title"><span>💉</span> Medicación de Soporte</div>
+
+      <!-- Filgrastim -->
+      <div style="margin-bottom:16px;">
+        <div class="toggle-row">
+          <label class="toggle">
+            <input type="checkbox" id="filgToggle" onchange="toggleFilgrastim()">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label">¿Requiere <strong>FILGRASTIM</strong>?</span>
+        </div>
+        <div class="filgrastim-fields" id="filgFields">
+          <div class="form-group">
+            <label>Día de inicio (día del ciclo)</label>
+            <input type="number" id="filgStart" min="1" max="28" value="5" placeholder="Ej: 5">
+          </div>
+          <div class="form-group">
+            <label>Número de días</label>
+            <input type="number" id="filgDays" min="1" max="14" value="7" placeholder="Ej: 7">
+          </div>
+        </div>
+      </div>
+
+      <!-- Eritropoyetina -->
+      <div>
+        <div class="toggle-row">
+          <label class="toggle">
+            <input type="checkbox" id="epoToggle" onchange="toggleEpo()">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label">¿Requiere <strong>ERITROPOYETINA</strong>?</span>
+        </div>
+        <div class="filgrastim-fields" id="epoFields">
+          <div class="form-group">
+            <label>Día de inicio (día del ciclo)</label>
+            <input type="number" id="epoStart" min="1" max="28" value="1" placeholder="Ej: 1">
+          </div>
+          <div class="form-group">
+            <label>Nº de administraciones</label>
+            <input type="number" id="epoCount" min="1" max="12" value="2" placeholder="Ej: 2">
+          </div>
+          <div class="form-group">
+            <label>Frecuencia</label>
+            <select id="epoFreq">
+              <option value="7">Semanal (cada 7 días)</option>
+              <option value="14" selected>Quincenal (cada 14 días)</option>
+              <option value="21">Trisemanal (cada 21 días)</option>
+              <option value="28">Mensual (cada 28 días)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-actions">
+      <button class="btn btn-primary" onclick="generateCalendar()">🗓 Generar Calendario</button>
+    </div>
+  </div>
+
+  <!-- RESULT SECTION -->
+  <div id="result"></div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// TOGGLE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleFilgrastim() {
+  document.getElementById('filgFields').classList.toggle('active', document.getElementById('filgToggle').checked);
+}
+function toggleEpo() {
+  document.getElementById('epoFields').classList.toggle('active', document.getElementById('epoToggle').checked);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DRUG DEFINITIONS FOR CHECKLIST (per protocol)
+// ─────────────────────────────────────────────────────────────────────────────
+const PROTOCOL_DRUGS = {
+  'DEMO1': [
+    { key: 'VINB',    label: 'MEDICAMENTO 1 IV',   sub: 'Hospital de Día · Día 1', color: '#b45309' },
+    { key: 'CYCLO',   label: 'MEDICAMENTO 2 IV',   sub: 'Hospital de Día · Día 1', color: '#7c3aed' },
+    { key: 'PRED',    label: 'MEDICAMENTO 3 ORAL', sub: 'Oral · Días 1–5', color: '#0369a1' },
+    { key: 'PROCARB', label: 'MEDICAMENTO 4 ORAL', sub: 'Oral · Días 1–5', color: '#15803d' },
+    { key: 'MITOX',   label: 'MEDICAMENTO 5 IV',   sub: 'Hospital de Día · Día 15', color: '#9d174d' },
+    { key: 'BLEO',    label: 'MEDICAMENTO 6 IV',   sub: 'Hospital de Día · Día 15', color: '#1e40af' },
+    { key: 'ETOP',    label: 'MEDICAMENTO 7 ORAL', sub: 'Cápsulas · Días 15–19', color: '#b91c1c' },
+  ],
+  'DEMO2': [
+    { key: 'BEVA', label: 'MEDICAMENTO 1 IV',   sub: 'Hospital de Día · Días 1, 15', color: '#1d4ed8' },
+    { key: 'LONS', label: 'MEDICAMENTO 2 ORAL', sub: 'Oral · Días 1–5 y 8–12', color: '#0f766e' },
+  ],
+};
+
+// Map drug codes to checklist key
+function codeToKey(drug) {
+  if (drug.startsWith('DEXA_')) return 'DEXA';
+  if (drug.startsWith('CAPE_')) return 'CAPE';
+  if (drug.startsWith('ETOP_')) return 'ETOP';
+  if (drug === 'DEXA8_M') return 'DEXA8';
+  if (drug.startsWith('ONDA_')) return 'ONDA';
+  if (drug.startsWith('TUCA_')) return 'TUCA';
+  return drug;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CHECKLIST
+// ─────────────────────────────────────────────────────────────────────────────
+function buildChecklist(protocol) {
+  const card = document.getElementById('checklistCard');
+  const grid = document.getElementById('checklistGrid');
+  const drugs = PROTOCOL_DRUGS[protocol];
+  if (!drugs) { card.classList.remove('visible'); return; }
+
+  grid.innerHTML = '';
+  drugs.forEach(({ key, label, sub, color }) => {
+    const item = document.createElement('label');
+    item.className = 'ck-item checked';
+    item.setAttribute('data-key', key);
+    item.innerHTML = `
+      <input type="checkbox" id="ck_${key}" checked onchange="updateCkStyle(this)">
+      <div class="ck-box"></div>
+      <div>
+        <div class="ck-label">
+          <span class="ck-dot" style="background:${color}"></span>
+          ${label}
+        </div>
+        <div class="ck-sublabel">${sub}</div>
+      </div>`;
+    grid.appendChild(item);
+  });
+  card.classList.add('visible');
+}
+
+function updateCkStyle(cb) {
+  const item = cb.closest('.ck-item');
+  item.classList.toggle('checked',   cb.checked);
+  item.classList.toggle('unchecked', !cb.checked);
+}
+
+function checkAll(val) {
+  document.querySelectorAll('#checklistGrid input[type=checkbox]').forEach(cb => {
+    cb.checked = val;
+    updateCkStyle(cb);
+  });
+}
+
+function getEnabledKeys() {
+  const keys = new Set();
+  document.querySelectorAll('#checklistGrid input[type=checkbox]').forEach(cb => {
+    if (cb.checked) {
+      const id = cb.id.replace('ck_', '');
+      keys.add(id);
+    }
+  });
+  return keys;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ON PROTOCOL CHANGE
+// ─────────────────────────────────────────────────────────────────────────────
+function onProtocolChange() {
+  const proto = document.getElementById('protocol').value;
+  const inp = document.getElementById('cycleNum');
+  const vepCard = document.getElementById('vepembConfigCard');
+  const tasCard = document.getElementById('tasbevaConfigCard');
+  const capeCard = document.getElementById('capeConfigCard');
+  const etopCard = document.getElementById('etopConfigCard');
+  const rchopCard = document.getElementById('rchopConfigCard');
+  const tucaCard = document.getElementById('tucaConfigCard');
+  const dexaDoseCard = document.getElementById('dexaDoseCard');
+
+  if (inp) {
+    inp.max = (proto === 'DEMO1') ? 6 : 30;
+    if (parseInt(inp.value || '1') > parseInt(inp.max)) inp.value = inp.max;
+  }
+  if (vepCard) vepCard.style.display = (proto === 'DEMO1') ? 'block' : 'none';
+  if (tasCard) tasCard.style.display = (proto === 'DEMO2') ? 'block' : 'none';
+  if (capeCard) capeCard.style.display = 'none';
+  if (etopCard) etopCard.style.display = 'none';
+  if (rchopCard) rchopCard.style.display = 'none';
+  if (tucaCard) tucaCard.style.display = 'none';
+  if (dexaDoseCard) dexaDoseCard.style.display = 'none';
+
+  const cycleWarn = document.getElementById('cycleNumWarning');
+  if (cycleWarn) cycleWarn.style.display = 'none';
+
+  const dtsEl = document.getElementById('daysToShow');
+  if (dtsEl) {
+    dtsEl.value = '';
+    dtsEl.max = 28;
+    dtsEl.placeholder = 'Todos (28)';
+  }
+  updateOndaDayOptions();
+  buildChecklist(proto);
+}
+
+function toggleVepField(fieldId) {
+  const el = document.getElementById(fieldId);
+  if (!el) return;
+  const toggleId = fieldId.replace('Fields', 'Toggle');
+  const cb = document.getElementById(toggleId);
+  el.classList.toggle('active', cb && cb.checked);
+}
+
+// Devuelve 'DEXA_HOME40' o 'DEXA_HOME20' según la dosis seleccionada en la tarjeta DRd/DaraVRd
+function getDexaHomeDrug() {
+  const sel = document.querySelector('input[name="dexaHomeDose"]:checked');
+  return (sel && sel.value === '20') ? 'DEXA_HOME20' : 'DEXA_HOME40';
+}
+function onDexaDoseChange() {
+  // No hace nada especial; la dosis se lee al generar el calendario
+}
+
+function onCycleNumInput() {
+  const proto = document.getElementById('protocol').value;
+  const val = parseInt(document.getElementById('cycleNum').value);
+  const warn = document.getElementById('cycleNumWarning');
+  if (warn) warn.style.display = (proto === 'DEMO1' && val > 6) ? 'block' : 'none';
+}
+
+function toggleOnda() {
+  const checked = document.getElementById('ondaToggle').checked;
+  const fields = document.getElementById('ondaFields');
+  if (fields) fields.style.display = checked ? 'block' : 'none';
+}
+
+function updateOndaDayOptions() {
+  const sel = document.getElementById('ondaDias');
+  if (!sel) return;
+  const dtsEl = document.getElementById('daysToShow');
+  const dtsRaw = parseInt(dtsEl?.value || '0');
+  const maxVisible = dtsRaw > 0 ? dtsRaw : 99;
+  const prev = sel.value;
+  const opts = [
+    { v: '23', label: 'Días 2 y 3', need: 3 },
+    { v: '2',  label: 'Solo Día 2', need: 2 },
+    { v: '3',  label: 'Solo Día 3', need: 3 }
+  ];
+  sel.innerHTML = '';
+  opts.forEach(o => {
+    if (o.need <= maxVisible) {
+      const opt = document.createElement('option');
+      opt.value = o.v; opt.textContent = o.label;
+      sel.appendChild(opt);
+    }
+  });
+  if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+}
+
+function toggleEtopDay4() {
+  // etopDexaDay4 is the sole control for day 4 (dexa only on day 4)
+  const d4 = document.getElementById('etopDexaDay4')?.checked || false;
+  const lbl = document.getElementById('etopActiveDaysLabel');
+  if (lbl) lbl.textContent = d4 ? '2, 3 y 4 (dexa)' : '2 y 3';
+}
+
+document.getElementById('cycleStart').valueAsDate = new Date();
+// Build initial checklist
+onProtocolChange();
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: DRD (MAIA) – MM
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_DRD(cycleNum) {
+  const days = [];
+  const daraDays = cycleNum <= 2 ? [1,8,15,22] : cycleNum <= 6 ? [1,15] : [1];
+  // Días que siempre son 20mg (día siguiente a DARA: 2 y 9)
+  const dexaFixed20 = [2, 9];
+  // Dosis ajustable (selector): 40mg por defecto, 20mg si el paciente reduce
+  const dexaHome = getDexaHomeDrug();
+  daraDays.forEach(d => days.push({ day: d, drug: 'DARA' }));
+  for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+  if (cycleNum <= 2) {
+    // Ciclos 1-2: DARA días 1,8,15,22 → DEXA_HOSP esos días, domicilio días 2,9,16,23
+    // Días 2,9 siempre 20mg; días 16,23 ajustables
+    [1,8,15,22].forEach(d => days.push({ day: d, drug: 'DEXA_HOSP' }));
+    [2, 9].forEach(d => days.push({ day: d, drug: 'DEXA_HOME20' }));
+    [16, 23].forEach(d => days.push({ day: d, drug: dexaHome }));
+  } else if (cycleNum <= 6) {
+    // Ciclos 3-6: DARA días 1,15 → DEXA_HOSP días 1,15, domicilio días 2,8,16,22
+    // Día 2 siempre 20mg; días 8,16,22 ajustables
+    [1,15].forEach(d => days.push({ day: d, drug: 'DEXA_HOSP' }));
+    days.push({ day: 2,  drug: 'DEXA_HOME20' });
+    [8, 16, 22].forEach(d => days.push({ day: d, drug: dexaHome }));
+  } else {
+    // Ciclos 7+: DARA día 1 → DEXA_HOSP día 1, domicilio días 2,8,15,22
+    // Día 2 siempre 20mg; días 8,15,22 ajustables
+    days.push({ day: 1, drug: 'DEXA_HOSP' });
+    days.push({ day: 2, drug: 'DEXA_HOME20' });
+    [8, 15, 22].forEach(d => days.push({ day: d, drug: dexaHome }));
+  }
+  return days;
+}
+function getPhase_DRD(n) {
+  if (n <= 2) return 'Ciclos 1\u20132 \u00b7 DARATUMUMAB semanal';
+  if (n <= 6) return 'Ciclos 3\u20136 \u00b7 DARATUMUMAB quincenal';
+  return 'Ciclo 7+ \u00b7 DARATUMUMAB mensual';
+}
+function getSummaryRows_DRD(cycleNum, useFilg, fs, fd, useEpo, epoItems, enabled) {
+  const dd = cycleNum <= 2 ? [1,8,15,22] : cycleNum <= 6 ? [1,15] : [1];
+  let r = '';
+  if (enabled.has('DARA'))
+    r += row('\uD83C\uDFE5','DARATUMUMAB SC', `D\u00edas ${dd.join(', ')}`, '1800 mg SC', 'Hospital de D\u00eda');
+  if (enabled.has('LENA'))
+    r += row('\uD83D\uDC8A','LENALIDOMIDA', 'D\u00edas 1\u201321', '25 mg/d\u00eda', 'Oral \u00b7 Domicilio');
+  const dexaIs20 = getDexaHomeDrug() === 'DEXA_HOME20';
+  const dexaLabelAdj = dexaIs20 ? 'DEXAMETASONA 20mg (1 c\u00e1ps.)' : 'DEXAMETASONA 40mg (2 c\u00e1ps.)';
+  const dexaDoseAdj = dexaIs20 ? '20 mg oral' : '40 mg oral';
+  const dexaIconAdj = dexaIs20 ? '\uD83D\uDC9C' : '\uD83D\uDD35';
+  if (enabled.has('DEXA') && enabled.has('DARA')) {
+    r += row('\uD83D\uDC8A','DEXAMETASONA (premedicaci\u00f3n)', `D\u00edas ${dd.join(', ')}`, '20 mg IV en premedic.', 'Hospital de D\u00eda');
+    // Días 2 y 9 siempre 20mg
+    r += row('\uD83D\uDC9C','DEXAMETASONA 20mg (1 c\u00e1ps.)', 'D\u00edas 2, 9', '20 mg oral', 'Domicilio');
+    // Días ajustables según ciclo y selector
+    if (cycleNum <= 2) {
+      r += row(dexaIconAdj, dexaLabelAdj, 'D\u00edas 16, 23', dexaDoseAdj, 'Domicilio');
+    } else {
+      r += row(dexaIconAdj, dexaLabelAdj, 'D\u00edas 8, 16, 22', dexaDoseAdj, 'Domicilio');
+    }
+  } else if (enabled.has('DEXA')) {
+    r += row('\uD83D\uDC9C','DEXAMETASONA 20mg (1 c\u00e1ps.)', 'D\u00edas 2, 9', '20 mg oral', 'Domicilio');
+    if (cycleNum <= 2) {
+      r += row(dexaIconAdj, dexaLabelAdj, 'D\u00edas 16, 23', dexaDoseAdj, 'Domicilio');
+    } else {
+      r += row(dexaIconAdj, dexaLabelAdj, 'D\u00edas 8, 16, 22', dexaDoseAdj, 'Domicilio');
+    }
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+function getNotes_DRD(enabled) {
+  let n = '';
+  const dexaIs20 = getDexaHomeDrug() === 'DEXA_HOME20';
+  const dexaMgAdj = dexaIs20 ? '20 mg (1 c\u00e1ps.)' : '40 mg (2 c\u00e1ps.)';
+  if (enabled.has('DARA') && enabled.has('DEXA'))
+    n += `<li>Los d\u00edas de <strong>DARATUMUMAB</strong>, la DEXAMETASONA est\u00e1 incluida en la premedicaci\u00f3n. <strong>No tomar DEXAMETASONA en casa ese d\u00eda.</strong> El d\u00eda siguiente (d\u00edas 2 y 9): siempre 20 mg (1 c\u00e1ps.) oral en domicilio.</li>`;
+  if (enabled.has('DEXA'))
+    n += `<li><strong>DEXAMETASONA:</strong> tomar siempre <strong>por la ma\u00f1ana</strong>, con o sin alimentos. D\u00edas 2 y 9: 20 mg (1 c\u00e1ps.). Resto de d\u00edas: ${dexaMgAdj}.</li>`;
+  if (enabled.has('LENA'))
+    n += `<li>LENALIDOMIDA: d\u00edas 1\u201321. Descanso d\u00edas 22\u201328. <strong>Se puede tomar con o sin alimentos.</strong></li>`;
+  return n;
+}
+function getLegend_DRD(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('DARA'))  h += `<div class="legend-item leg-hospital">\uD83C\uDFE5 DARATUMUMAB SC \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('LENA'))  h += `<div class="legend-item leg-lena">\uD83D\uDC8A LENALIDOMIDA \u2013 Domicilio</div>`;
+  if (enabled.has('DEXA')) {
+    const dexaIs20_drd = getDexaHomeDrug() === 'DEXA_HOME20';
+    h += `<div class="legend-item leg-dexa-hosp">\uD83D\uDC8A DEXA 20mg \u2013 Premedic. hosp.</div>`;
+    h += `<div class="legend-item leg-dexa-home20">\uD83D\uDC9C DEXA 20mg (1 c\u00e1ps.) \u2013 D\u00edas 2, 9</div>`;
+    if (!dexaIs20_drd) {
+      h += `<div class="legend-item leg-dexa-home">\uD83D\uDD35 DEXA 40mg (2 c\u00e1ps.) \u2013 Resto d\u00edas</div>`;
+    }
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: ISA-VRd (BENEFIT) – MM
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_ISAVRD(cycleNum) {
+  const days = [];
+  if (cycleNum <= 12) {
+    const isaDays = cycleNum === 1 ? [1,8,15,22] : [1,15];
+    isaDays.forEach(d => days.push({ day: d, drug: 'ISA' }));
+    [1,8,15].forEach(d => days.push({ day: d, drug: 'BORT' }));
+    for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+    [1,8,15,22].forEach(d => {
+      days.push({ day: d, drug: isaDays.includes(d) ? 'DEXA_HOSP' : 'DEXA_HOME20' });
+    });
+  } else if (cycleNum <= 18) {
+    days.push({ day: 1, drug: 'ISA' });
+    [1,15].forEach(d => days.push({ day: d, drug: 'BORT' }));
+    for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+  } else {
+    days.push({ day: 1, drug: 'ISA' });
+    for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+  }
+  return days;
+}
+function getPhase_ISAVRD(n) {
+  if (n === 1) return 'Inducci\u00f3n inicial \u00b7 Ciclo 1 (ISATUXIMAB semanal)';
+  if (n <= 12) return `Inducci\u00f3n inicial \u00b7 Ciclos 2\u201312 (ISATUXIMAB quincenal)`;
+  if (n <= 18) return `Inducci\u00f3n tard\u00eda \u00b7 Ciclos 13\u201318`;
+  return `Tratamiento continuo \u00b7 Ciclo ${n}`;
+}
+function getSummaryRows_ISAVRD(cycleNum, useFilg, fs, fd, useEpo, epoItems, enabled) {
+  let r = '';
+  if (cycleNum <= 12) {
+    const id = cycleNum === 1 ? [1,8,15,22] : [1,15];
+    if (enabled.has('ISA'))  r += row('\uD83C\uDFE5','ISATUXIMAB IV',  `D\u00edas ${id.join(', ')}`, '10 mg/kg IV', 'Hospital de D\u00eda');
+    if (enabled.has('BORT')) r += row('\uD83C\uDFE5','BORTEZOMIB SC', 'D\u00edas 1, 8, 15', '1,3 mg/m\u00b2 SC', 'Hospital de D\u00eda');
+    if (enabled.has('LENA')) r += row('\uD83D\uDC8A','LENALIDOMIDA', 'D\u00edas 1\u201321', '25 mg/d\u00eda', 'Oral \u00b7 Domicilio');
+    if (enabled.has('DEXA')) {
+      r += row('\uD83D\uDC8A','DEXAMETASONA (premedicaci\u00f3n)', `D\u00edas ${id.join(', ')}`, '20 mg IV en premedic.', 'Hospital de D\u00eda');
+      const dh = [1,8,15,22].filter(d => !id.includes(d));
+      if (dh.length) r += row('\uD83D\uDC9C','DEXAMETASONA 20mg (1 c\u00e1ps.)', `D\u00edas ${dh.join(', ')}`, '20 mg oral', 'Domicilio');
+    }
+  } else if (cycleNum <= 18) {
+    if (enabled.has('ISA'))  r += row('\uD83C\uDFE5','ISATUXIMAB IV',  'D\u00eda 1', '10 mg/kg IV', 'Hospital de D\u00eda');
+    if (enabled.has('BORT')) r += row('\uD83C\uDFE5','BORTEZOMIB SC', 'D\u00edas 1, 15', '1,3 mg/m\u00b2 SC', 'Hospital de D\u00eda');
+    if (enabled.has('LENA')) r += row('\uD83D\uDC8A','LENALIDOMIDA', 'D\u00edas 1\u201321', '25 mg/d\u00eda', 'Oral \u00b7 Domicilio');
+  } else {
+    if (enabled.has('ISA'))  r += row('\uD83C\uDFE5','ISATUXIMAB IV',  'D\u00eda 1', '10 mg/kg IV', 'Hospital de D\u00eda');
+    if (enabled.has('LENA')) r += row('\uD83D\uDC8A','LENALIDOMIDA', 'D\u00edas 1\u201321', '25 mg/d\u00eda', 'Oral \u00b7 Domicilio');
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+function getNotes_ISAVRD(cycleNum, enabled) {
+  let n = '';
+  if (cycleNum <= 12) {
+    if (enabled.has('ISA') && enabled.has('DEXA'))
+      n += `<li>Los d\u00edas de <strong>ISATUXIMAB</strong>, la DEXAMETASONA (20 mg) est\u00e1 incluida en premedicaci\u00f3n. <strong>No tomar DEXAMETASONA en casa ese d\u00eda ni al siguiente</strong> (dosis 20 mg, sin desdoble).</li>`;
+    if (enabled.has('DEXA'))
+      n += `<li>D\u00edas sin ISATUXIMAB con DEXAMETASONA: <strong>20 mg oral domicilio.</strong></li>`;
+    if (enabled.has('BORT'))
+      n += `<li><strong>BORTEZOMIB</strong>: inyecci\u00f3n SC en Hospital de D\u00eda.</li>`;
+  } else if (cycleNum <= 18) {
+    if (enabled.has('BORT')) n += `<li><strong>BORTEZOMIB</strong>: Hospital de D\u00eda d\u00edas 1 y 15.</li>`;
+  } else {
+    n += `<li>Tratamiento continuo: ISATUXIMAB d\u00eda 1 + LENALIDOMIDA domicilio.</li>`;
+  }
+  if (enabled.has('DEXA'))
+    n += `<li><strong>DEXAMETASONA:</strong> tomar siempre <strong>por la ma\u00f1ana</strong>, con o sin alimentos.</li>`;
+  if (enabled.has('LENA')) n += `<li>LENALIDOMIDA: d\u00edas 1\u201321. Descanso d\u00edas 22\u201328. <strong>Se puede tomar con o sin alimentos.</strong></li>`;
+  return n;
+}
+function getLegend_ISAVRD(cycleNum, useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('ISA'))  h += `<div class="legend-item leg-isa">\uD83C\uDFE5 ISATUXIMAB IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('BORT') && cycleNum <= 18) h += `<div class="legend-item leg-bort">\uD83C\uDFE5 BORTEZOMIB SC \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('LENA')) h += `<div class="legend-item leg-lena">\uD83D\uDC8A LENALIDOMIDA \u2013 Domicilio</div>`;
+  if (enabled.has('DEXA') && cycleNum <= 12) {
+    h += `<div class="legend-item leg-dexa-hosp">\uD83D\uDC8A DEXAMETASONA \u2013 Premedic. hosp.</div>`;
+    h += `<div class="legend-item leg-dexa-home">\uD83D\uDD35 DEXAMETASONA \u2013 Domicilio</div>`;
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: VEPEMB (LH)
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_VEPEMB() {
+  const days = [];
+  days.push({ day: 1, drug: 'VINB' });
+  days.push({ day: 1, drug: 'CYCLO' });
+  for (let d = 1; d <= 5; d++) {
+    days.push({ day: d, drug: 'PROCARB' });
+    days.push({ day: d, drug: 'PRED' });
+  }
+  days.push({ day: 15, drug: 'MITOX' });
+  days.push({ day: 15, drug: 'BLEO' });
+  for (let d = 15; d <= 19; d++) days.push({ day: d, drug: 'ETOP' });
+  return days;
+}
+function getPhase_VEPEMB(n) { return `Ciclo ${n} de 6 \u00b7 LH VEPEMB`; }
+function getSummaryRows_VEPEMB(useFilg, fs, fd, useEpo, epoItems, enabled, vep) {
+  let r = '';
+  if (enabled.has('VINB'))    r += row('\uD83C\uDFE5','MEDICAMENTO 1 IV',     'D\u00eda 1', '6 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('CYCLO'))   r += row('\uD83C\uDFE5','MEDICAMENTO 2 IV',  'D\u00eda 1', '500 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('PRED') && vep && vep.pred) {
+    const icons = summaryPillIcons([
+      { label:'30mg', pillClass:'pill-pred30', count:vep.pred30, labelColor:'var(--pred)' },
+      { label:'10mg', pillClass:'pill-pred10', count:vep.pred10, labelColor:'#0369a1' }
+    ]);
+    r += `<tr><td>\uD83D\uDC8A <strong>MEDICAMENTO 3</strong></td><td>D\u00edas 1\u20135</td><td>${icons || '30 mg/m\u00b2/d\u00eda'}</td><td>Comprimidos \u00b7 Domicilio</td></tr>`;
+  } else if (enabled.has('PRED')) {
+    r += row('\uD83D\uDC8A','MEDICAMENTO 3 ORAL','D\u00edas 1\u20135','30 mg/m\u00b2/d\u00eda','Comprimidos \u00b7 Domicilio');
+  }
+  if (enabled.has('PROCARB') && vep && vep.procarb) {
+    const icons = summaryPillIcons([
+      { label:'50mg', pillClass:'pill-procarb50', count:vep.procarb50, labelColor:'var(--procarb)' }
+    ]);
+    r += `<tr><td>\uD83D\uDC8A <strong>MEDICAMENTO 4</strong></td><td>D\u00edas 1\u20135</td><td>${icons || '100 mg/m\u00b2/d\u00eda'}</td><td>Comprimidos \u00b7 Domicilio</td></tr>`;
+  } else if (enabled.has('PROCARB')) {
+    r += row('\uD83D\uDC8A','MEDICAMENTO 4 ORAL','D\u00edas 1\u20135','100 mg/m\u00b2/d\u00eda','Comprimidos \u00b7 Domicilio');
+  }
+  if (enabled.has('MITOX'))   r += row('\uD83C\uDFE5','MEDICAMENTO 5 IV',    'D\u00eda 15', '10 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('BLEO'))    r += row('\uD83C\uDFE5','MEDICAMENTO 6 IV',      'D\u00eda 15', '10 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('ETOP') && vep && vep.etop) {
+    const icons = summaryPillIcons([
+      { label:'100mg', pillClass:'capsule-100', count:vep.etop100, labelColor:'var(--etop100)' },
+      { label:'50mg',  pillClass:'capsule-50',  count:vep.etop50,  labelColor:'var(--etop50)' }
+    ]);
+    r += `<tr><td>\uD83D\uDC8A <strong>ET\u00d3POSIDO</strong></td><td>D\u00edas 15\u201319</td><td>${icons || '100 mg/m\u00b2/d\u00eda'}</td><td>C\u00e1psulas \u00b7 Domicilio</td></tr>`;
+  } else if (enabled.has('ETOP')) {
+    r += row('\uD83D\uDC8A','ET\u00d3POSIDO','D\u00edas 15\u201319','100 mg/m\u00b2/d\u00eda','C\u00e1psulas \u00b7 Domicilio');
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+function getNotes_VEPEMB(enabled) {
+  let n = '';
+  if (enabled.has('VINB') || enabled.has('CYCLO'))
+    n += `<li><strong>MEDICAMENTO 1</strong> y/o <strong>MEDICAMENTO 2</strong>: IV en Hospital de D\u00eda el d\u00eda 1.</li>`;
+  if (enabled.has('PRED'))
+    n += `<li><strong>MEDICAMENTO 3</strong>: comprimidos en domicilio d\u00edas 1\u20135. Tomar por la <strong>ma\u00f1ana</strong>, con o sin alimentos.</li>`;
+  if (enabled.has('PROCARB'))
+    n += `<li><strong>MEDICAMENTO 4</strong>: comprimidos en domicilio d\u00edas 1\u20135. Tomar por la <strong>ma\u00f1ana</strong>. Evite el alcohol y alimentos ricos en tiran\u00f1a durante el tratamiento.</li>`;
+  if (enabled.has('MITOX') || enabled.has('BLEO'))
+    n += `<li><strong>MEDICAMENTO 5</strong> y/o <strong>MEDICAMENTO 6</strong>: IV en Hospital de D\u00eda el d\u00eda 15.</li>`;
+  if (enabled.has('ETOP')) {
+    n += `<li><strong>ET\u00d3POSIDO</strong>: Tome las c\u00e1psulas <strong>con el est\u00f3mago vac\u00edo</strong> por la ma\u00f1ana, los d\u00edas 15 al 19. No mastique ni abra las c\u00e1psulas. Si vomita en la hora siguiente a la toma, no repita la dosis; cons\u00falte con su equipo.</li>`;
+    n += `<li>Guarde las c\u00e1psulas de <strong>etop\u00f3sido</strong> a temperatura ambiente, fuera del alcance de los ni\u00f1os y lejos de la humedad.</li>`;
+  }
+  n += `<li>D\u00edas 6\u201314 y 20\u201328: descanso farmacol\u00f3gico.</li>`;
+  return n;
+}
+function getLegend_VEPEMB(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('VINB'))    h += `<div class="legend-item leg-vinb">\uD83C\uDFE5 MEDICAMENTO 1 IV \u2013 Hosp. D\u00eda (d\u00eda 1)</div>`;
+  if (enabled.has('CYCLO'))   h += `<div class="legend-item leg-cyclo">\uD83C\uDFE5 MEDICAMENTO 2 IV \u2013 Hosp. D\u00eda (d\u00eda 1)</div>`;
+  if (enabled.has('PROCARB')) h += `<div class="legend-item leg-procarb">\uD83D\uDC8A MEDICAMENTO 4 \u2013 Domicilio (d\u00edas 1\u20135)</div>`;
+  if (enabled.has('PRED'))    h += `<div class="legend-item leg-pred">\uD83D\uDC8A MEDICAMENTO 3 \u2013 Domicilio (d\u00edas 1\u20135)</div>`;
+  if (enabled.has('MITOX'))   h += `<div class="legend-item leg-mitox">\uD83C\uDFE5 MEDICAMENTO 5 IV \u2013 Hosp. D\u00eda (d\u00eda 15)</div>`;
+  if (enabled.has('BLEO'))    h += `<div class="legend-item leg-bleo">\uD83C\uDFE5 MEDICAMENTO 6 IV \u2013 Hosp. D\u00eda (d\u00eda 15)</div>`;
+  if (enabled.has('ETOP'))    h += `<div class="legend-item leg-etop">\uD83D\uDC8A ET\u00d3POSIDO \u2013 Domicilio (d\u00edas 15\u201319)</div>`;
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SUPPORT MED HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+function calcEpoDays(epoStart, epoCount, epoFreq) {
+  const days = [];
+  for (let i = 0; i < epoCount; i++) {
+    days.push(epoStart + i * epoFreq);
+  }
+  return days;
+}
+
+function supportRows(useFilg, fs, fd, useEpo, epoItems) {
+  let r = '';
+  if (useFilg)
+    r += row('\uD83D\uDC89','FILGRASTIM', `D\u00edas ${fs}\u2013${fs+fd-1}`, '300/480 mcg SC', 'Subcut\u00e1neo \u00b7 Domicilio');
+  if (useEpo && epoItems.length) {
+    const freqLabel = { 7:'semanal', 14:'quincenal', 21:'trisemanal', 28:'mensual' };
+    const freq = epoItems.length > 1 ? epoItems[1] - epoItems[0] : 0;
+    const dayStr = epoItems.map(d => `d\u00eda ${d}`).join(', ');
+    r += row('\uD83D\uDC89','ERITROPOYETINA SC', dayStr, 'Seg\u00fan prescripci\u00f3n', `Subcut\u00e1neo \u00b7 Domicilio (${epoItems.length} adm. ${freqLabel[freq]||''})`);
+  }
+  return r;
+}
+
+function supportLegend(useFilg, useEpo) {
+  let h = '';
+  if (useFilg) h += `<div class="legend-item leg-filg">\uD83D\uDC89 FILGRASTIM SC \u2013 Domicilio</div>`;
+  if (useEpo)  h += `<div class="legend-item leg-epo">\uD83D\uDC89 ERITROPOYETINA SC \u2013 Domicilio</div>`;
+  return h;
+}
+
+function row(icon, name, days, dose, route) {
+  return `<tr><td>${icon} <strong>${name}</strong></td><td>${days}</td><td>${dose}</td><td>${route}</td></tr>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: Dara-VRd – MM (Inducción ciclos 1-4, Consolidación ciclos 5-6)
+// Ciclos 28 días, máximo 6 ciclos
+//
+// DEXA logic: 40mg días 1-4 y 9-12
+//   Día 1 coincide con DARA en todos los ciclos →
+//     día 1: DEXA_HOSP (20mg en premedic.), día 2: DEXA_HOME20, días 3-4: DEXA_HOME40
+//   Días 9-12: siempre DEXA_HOME40 (DARA no cae en bloque 9-12)
+//   Días 2,3,4 SOLO si no son ya el "día siguiente a DARA" (día 1+1=2 ya cubierto)
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_DARAVRD(cycleNum) {
+  const days = [];
+
+  // DARATUMUMAB IV
+  // Ciclos 1-2 (inducción): días 1,8,15,22
+  // Ciclos 3-4 (inducción): días 1,15
+  // Ciclos 5-6 (consolidación): días 1,15
+  const daraDays = (cycleNum <= 2) ? [1, 8, 15, 22] : [1, 15];
+  daraDays.forEach(d => days.push({ day: d, drug: 'DARA' }));
+
+  // BORTEZOMIB SC – días 1, 4, 8, 11 (todos los ciclos)
+  [1, 4, 8, 11].forEach(d => days.push({ day: d, drug: 'BORT' }));
+
+  // LENALIDOMIDA oral – días 1-21
+  for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+
+  // DEXAMETASONA:
+  // Días 2 y 9 → siempre 20mg (fijos, no cambian con el selector)
+  // Resto de días → ajustables con el selector (40mg por defecto, 20mg si se reduce)
+  //   Ciclos 1-2: fijos=[2,9], ajustables=[16,23]
+  //   Ciclos 3-6: fijos=[2,9], ajustables=[16,22,23] (nota: 8 queda cubierto por BORT)
+  const dexaHome = getDexaHomeDrug();
+  if (cycleNum <= 2) {
+    [2, 9].forEach(d => days.push({ day: d, drug: 'DEXA_HOME20' }));
+    [16, 23].forEach(d => days.push({ day: d, drug: dexaHome }));
+  } else {
+    [2, 9].forEach(d => days.push({ day: d, drug: 'DEXA_HOME20' }));
+    [16, 22, 23].forEach(d => days.push({ day: d, drug: dexaHome }));
+  }
+
+  return days;
+}
+
+function getPhase_DARAVRD(n) {
+  if (n <= 4) return `Inducci\u00f3n \u00b7 Ciclo ${n} de 4 \u00b7 ${n <= 2 ? 'DARATUMUMAB semanal' : 'DARATUMUMAB quincenal'}`;
+  return `Consolidaci\u00f3n \u00b7 Ciclo ${n} de 6 \u00b7 DARATUMUMAB quincenal`;
+}
+
+function getSummaryRows_DARAVRD(cycleNum, useFilg, fs, fd, useEpo, epoItems, enabled) {
+  const dd = (cycleNum <= 2) ? [1, 8, 15, 22] : [1, 15];
+  let r = '';
+  if (enabled.has('DARA'))
+    r += row('\uD83C\uDFE5', 'DARATUMUMAB IV', `D\u00edas ${dd.join(', ')}`, 'Seg\u00fan prescripci\u00f3n IV', 'Hospital de D\u00eda');
+  if (enabled.has('BORT'))
+    r += row('\uD83C\uDFE5', 'BORTEZOMIB SC', 'D\u00edas 1, 4, 8, 11', '1,3 mg/m\u00b2 SC', 'Hospital de D\u00eda');
+  if (enabled.has('LENA'))
+    r += row('\uD83D\uDC8A', 'LENALIDOMIDA', 'D\u00edas 1\u201321', '25 mg/d\u00eda', 'Oral \u00b7 Domicilio');
+  if (enabled.has('DEXA')) {
+    const dexaIs20_dvrd = getDexaHomeDrug() === 'DEXA_HOME20';
+    const dexaLblAdj = dexaIs20_dvrd ? 'DEXAMETASONA 20mg (1 c\u00e1ps.)' : 'DEXAMETASONA 40mg (2 c\u00e1ps.)';
+    const dexaDoseAdj2 = dexaIs20_dvrd ? '20 mg oral' : '40 mg oral';
+    const dexaIconAdj2 = dexaIs20_dvrd ? '\uD83D\uDC9C' : '\uD83D\uDD35';
+    // Días 2 y 9 siempre 20mg
+    r += row('\uD83D\uDC9C', 'DEXAMETASONA 20mg (1 c\u00e1ps.)', 'D\u00edas 2, 9', '20 mg oral', 'Domicilio');
+    // Días ajustables según ciclo
+    if (cycleNum <= 2) {
+      r += row(dexaIconAdj2, dexaLblAdj, 'D\u00edas 16, 23', dexaDoseAdj2, 'Domicilio');
+    } else {
+      r += row(dexaIconAdj2, dexaLblAdj, 'D\u00edas 16, 22, 23', dexaDoseAdj2, 'Domicilio');
+    }
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+function getNotes_DARAVRD(cycleNum, enabled) {
+  let n = '';
+  if (enabled.has('DEXA')) {
+    const dexaIs20_dvrd = getDexaHomeDrug() === 'DEXA_HOME20';
+    const dexaMgAdj2 = dexaIs20_dvrd ? '20 mg (1 c\u00e1ps.)' : '40 mg (2 c\u00e1ps.)';
+    const dexaAdjDays = (cycleNum <= 2) ? '16 y 23' : '16, 22 y 23';
+    n += `<li><strong>DEXAMETASONA domicilio:</strong> d\u00edas 2 y 9 siempre 20 mg (1 c\u00e1ps.); d\u00edas ${dexaAdjDays}: ${dexaMgAdj2}. <strong>Tomar por la ma\u00f1ana, con o sin alimentos.</strong></li>`;
+  }
+  if (enabled.has('BORT'))
+    n += `<li><strong>BORTEZOMIB</strong>: inyecci\u00f3n SC en Hospital de D\u00eda los d\u00edas 1, 4, 8 y 11.</li>`;
+  if (enabled.has('LENA'))
+    n += `<li>LENALIDOMIDA: d\u00edas 1\u201321. Descanso d\u00edas 22\u201328. <strong>Se puede tomar con o sin alimentos.</strong></li>`;
+  const phase = cycleNum <= 4 ? 'INDUCCI\u00d3N' : 'CONSOLIDACI\u00d3N';
+  n += `<li>Fase actual: <strong>${phase}</strong> (ciclo ${cycleNum} de 6).</li>`;
+  return n;
+}
+
+function getLegend_DARAVRD(cycleNum, useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('DARA'))  h += `<div class="legend-item leg-hospital">\uD83C\uDFE5 DARATUMUMAB IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('BORT'))  h += `<div class="legend-item leg-bort">\uD83C\uDFE5 BORTEZOMIB SC \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('LENA'))  h += `<div class="legend-item leg-lena">\uD83D\uDC8A LENALIDOMIDA \u2013 Domicilio</div>`;
+  if (enabled.has('DEXA')) {
+    const dexaIs20_dvrd2 = getDexaHomeDrug() === 'DEXA_HOME20';
+    h += `<div class="legend-item leg-dexa-home20">\uD83D\uDC9C DEXA 20mg (1 c\u00e1ps.) \u2013 D\u00edas 2, 9</div>`;
+    if (!dexaIs20_dvrd2) {
+      h += `<div class="legend-item leg-dexa-home">\uD83D\uDD35 DEXA 40mg (2 c\u00e1ps.) \u2013 Domicilio</div>`;
+    }
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: DEMO (basado en Dara-VRd anonimizado)
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_DEMO(cycleNum) {
+  const days = [];
+  const med1Days = (cycleNum <= 2) ? [1, 8, 15, 22] : [1, 15];
+  med1Days.forEach(d => days.push({ day: d, drug: 'DARA' }));
+  [1, 3, 7, 11].forEach(d => days.push({ day: d, drug: 'BORT' }));
+  for (let d = 1; d <= 21; d++) days.push({ day: d, drug: 'LENA' });
+  const dexaHome = getDexaHomeDrug();
+  if (cycleNum <= 2) {
+    [2, 9].forEach(d => days.push({ day: d, drug: 'DEXA_HOME20' }));
+    [16, 23].forEach(d => days.push({ day: d, drug: dexaHome }));
+  } else {
+    [2, 9].forEach(d => days.push({ day: d, drug: 'DEXA_HOME20' }));
+    [16, 22, 23].forEach(d => days.push({ day: d, drug: dexaHome }));
+  }
+  return days;
+}
+
+function getPhase_DEMO(n) {
+  if (n <= 4) return `DEMO · Inducción · Ciclo ${n} de 4`;
+  return `DEMO · Consolidación · Ciclo ${n} de 6`;
+}
+
+function getSummaryRows_DEMO(cycleNum, useFilg, fs, fd, useEpo, epoItems, enabled) {
+  const dd = (cycleNum <= 2) ? [1, 8, 15, 22] : [1, 15];
+  let r = '';
+  if (enabled.has('DARA'))
+    r += row('🏥', 'MEDICAMENTO 1 IV', `Días ${dd.join(', ')}`, 'Según prescripción IV', 'Hospital de Día');
+  if (enabled.has('BORT'))
+    r += row('🏥', 'MEDICAMENTO 2 SC', 'Días 1, 3, 7, 11', '1,3 mg/m² SC', 'Hospital de Día');
+  if (enabled.has('LENA'))
+    r += row('💊', 'MEDICAMENTO 3 ORAL', 'Días 1–21', '25 mg/día', 'Oral · Domicilio');
+  if (enabled.has('DEXA')) {
+    const dexaIs20Demo = getDexaHomeDrug() === 'DEXA_HOME20';
+    const dexaLblAdj = dexaIs20Demo ? 'MEDICAMENTO 4 ORAL 20mg (1 cáps.)' : 'MEDICAMENTO 4 ORAL 40mg (2 cáps.)';
+    const dexaDoseAdj = dexaIs20Demo ? '20 mg oral' : '40 mg oral';
+    const dexaIconAdj = dexaIs20Demo ? '💜' : '🔵';
+    r += row('💜', 'MEDICAMENTO 4 ORAL 20mg (1 cáps.)', 'Días 2, 9', '20 mg oral', 'Domicilio');
+    if (cycleNum <= 2) r += row(dexaIconAdj, dexaLblAdj, 'Días 16, 23', dexaDoseAdj, 'Domicilio');
+    else r += row(dexaIconAdj, dexaLblAdj, 'Días 16, 22, 23', dexaDoseAdj, 'Domicilio');
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+function getNotes_DEMO(cycleNum, enabled) {
+  let n = '';
+  if (enabled.has('DEXA')) {
+    const dexaIs20Demo = getDexaHomeDrug() === 'DEXA_HOME20';
+    const dexaMgAdj = dexaIs20Demo ? '20 mg (1 cáps.)' : '40 mg (2 cáps.)';
+    const dexaAdjDays = (cycleNum <= 2) ? '16 y 23' : '16, 22 y 23';
+    n += `<li><strong>MEDICAMENTO 4 ORAL:</strong> días 2 y 9 siempre 20 mg (1 cáps.); días ${dexaAdjDays}: ${dexaMgAdj}. <strong>Tomar por la mañana, con o sin alimentos.</strong></li>`;
+  }
+  if (enabled.has('BORT'))
+    n += `<li><strong>MEDICAMENTO 2 SC</strong>: administración subcutánea en Hospital de Día los días 1, 3, 7 y 11.</li>`;
+  if (enabled.has('LENA'))
+    n += `<li><strong>MEDICAMENTO 3 ORAL</strong>: días 1–21 y descanso días 22–28. <strong>Puede tomarse con o sin alimentos.</strong></li>`;
+  if (enabled.has('DARA'))
+    n += `<li><strong>MEDICAMENTO 1 IV</strong>: infusión en Hospital de Día según calendario del ciclo.</li>`;
+  n += `<li>Mantenga hidratación adecuada y registre cualquier efecto adverso para comentarlo en la siguiente visita.</li>`;
+  return n;
+}
+
+function getLegend_DEMO(cycleNum, useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('DARA')) h += `<div class="legend-item leg-hospital">🏥 MEDICAMENTO 1 IV – Hosp. Día</div>`;
+  if (enabled.has('BORT')) h += `<div class="legend-item leg-bort">🏥 MEDICAMENTO 2 SC – Hosp. Día</div>`;
+  if (enabled.has('LENA')) h += `<div class="legend-item leg-lena">💊 MEDICAMENTO 3 ORAL – Domicilio</div>`;
+  if (enabled.has('DEXA')) {
+    const dexaIs20Demo = getDexaHomeDrug() === 'DEXA_HOME20';
+    h += `<div class="legend-item leg-dexa-home20">💜 MEDICAMENTO 4 ORAL 20mg – Días 2, 9</div>`;
+    if (!dexaIs20Demo) h += `<div class="legend-item leg-dexa-home">🔵 MEDICAMENTO 4 ORAL 40mg – Domicilio</div>`;
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: R-CHOP – LNH (Linfoma No Hodgkin)
+// Ciclos 28 días
+// Todos los fármacos IV el día 1 en Hospital de Día
+// Prednisona 100mg oral días 1-5
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_RCHOP() {
+  const days = [];
+  // IV day 1 – Hospital de Día
+  ['RITUX', 'CYCLO', 'DOXO', 'VINC'].forEach(drug => days.push({ day: 1, drug }));
+  // Prednisona oral días 2-5
+  for (let d = 2; d <= 5; d++) days.push({ day: d, drug: 'PRED' });
+  return days;
+}
+
+function getPhase_RCHOP(n) {
+  return `LNH R-CHOP \u00b7 Ciclo ${n}`;
+}
+
+function getSummaryRows_RCHOP(useFilg, fs, fd, useEpo, epoItems, enabled, pred) {
+  let r = '';
+  if (enabled.has('RITUX')) r += row('\uD83C\uDFE5', 'RITUXIMAB IV',       'D\u00eda 1', '375 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('CYCLO')) r += row('\uD83C\uDFE5', 'MEDICAMENTO 2 IV',  'D\u00eda 1', '750 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('DOXO'))  r += row('\uD83C\uDFE5', 'DOXORRUBICINA IV',   'D\u00eda 1', '50 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('VINC'))  r += row('\uD83C\uDFE5', 'VINCRISTINA IV',     'D\u00eda 1', '1,4 mg/m\u00b2 IV', 'Hospital de D\u00eda');
+  if (enabled.has('PRED')) {
+    const icons = pred ? summaryPillIcons([
+      { label:'30mg', pillClass:'pill-pred30', count:pred.pred30, labelColor:'var(--pred)' },
+      { label:'10mg', pillClass:'pill-pred10', count:pred.pred10, labelColor:'#0369a1' }
+    ]) : '';
+    r += `<tr><td>\uD83D\uDC8A <strong>MEDICAMENTO 3</strong></td><td>D\u00edas 2\u20135</td><td>${icons || '100 mg/d\u00eda oral'}</td><td>Comprimidos \u00b7 Domicilio</td></tr>`;
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+function getNotes_RCHOP(enabled) {
+  let n = '';
+  const ivDrugs = ['RITUX','CYCLO','DOXO','VINC'].filter(k => enabled.has(k));
+  if (ivDrugs.length)
+    n += `<li>El d\u00eda 1, acudir al Hospital de D\u00eda para la administraci\u00f3n IV de: <strong>${ivDrugs.join(', ')}</strong>.</li>`;
+  if (enabled.has('PRED'))
+    n += `<li><strong>MEDICAMENTO 3</strong> 100 mg/d\u00eda: tomar en domicilio los d\u00edas 2 al 5 (comprimidos orales).</li>`;
+  n += `<li>D\u00edas 6\u201328: descanso farmacol\u00f3gico.</li>`;
+  return n;
+}
+
+function getLegend_RCHOP(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('RITUX')) h += `<div class="legend-item leg-ritux">\uD83C\uDFE5 RITUXIMAB IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('CYCLO')) h += `<div class="legend-item leg-cyclo">\uD83C\uDFE5 MEDICAMENTO 2 IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('DOXO'))  h += `<div class="legend-item leg-doxo">\uD83C\uDFE5 DOXORRUBICINA IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('VINC'))  h += `<div class="legend-item leg-vinc">\uD83C\uDFE5 VINCRISTINA IV \u2013 Hosp. D\u00eda</div>`;
+  if (enabled.has('PRED'))  h += `<div class="legend-item leg-pred">\uD83D\uDC8A MEDICAMENTO 3 \u2013 Domicilio (d\u00edas 1\u20135)</div>`;
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: TAS-BEVA – CCR (Cáncer Colorrectal)
+// Ciclos 28 días
+// MEDICAMENTO 1 IV días 1 y 15 (Hospital de Día)
+// MEDICAMENTO 2 (Trifluridina/Tipiracilo) oral días 1-5 y días 8-12
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_TASBEVA() {
+  const days = [];
+  // MEDICAMENTO 1 IV – días 1 y 15
+  [1, 15].forEach(d => days.push({ day: d, drug: 'BEVA' }));
+  // MEDICAMENTO 2 oral – días 1-5 y 8-12
+  [1,2,3,4,5, 8,9,10,11,12].forEach(d => days.push({ day: d, drug: 'LONS' }));
+  return days;
+}
+
+function getPhase_TASBEVA(n) {
+  return `CCR TAS-BEVA \u00b7 Ciclo ${n}`;
+}
+
+function getSummaryRows_TASBEVA(useFilg, fs, fd, useEpo, epoItems, enabled, lon) {
+  let r = '';
+  if (enabled.has('BEVA'))
+    r += row('\uD83C\uDFE5', 'MEDICAMENTO 1 IV', 'D\u00edas 1 y 15', 'Seg\u00fan prescripci\u00f3n IV', 'Hospital de D\u00eda');
+  if (enabled.has('LONS')) {
+    const bIcons = lon ? summaryPillIcons([
+      { label:'20mg', pillClass:'pill-lons20', count:lon.l20b, labelColor:'#1e3a8a' },
+      { label:'15mg', pillClass:'pill-lons15', count:lon.l15b, labelColor:'#166534' }
+    ]) : '';
+    const dIcons = lon ? summaryPillIcons([
+      { label:'20mg', pillClass:'pill-lons20', count:lon.l20d, labelColor:'#1e3a8a' },
+      { label:'15mg', pillClass:'pill-lons15', count:lon.l15d, labelColor:'#166534' }
+    ]) : '';
+    r += `<tr><td>\u2600\ufe0f <strong>MEDICAMENTO 2 \u2013 Ma\u00f1ana</strong></td><td>D\u00edas 1\u20135 y 8\u201312</td><td>${bIcons || 'Seg\u00fan prescripci\u00f3n'}</td><td>Oral \u00b7 Domicilio</td></tr>`;
+    r += `<tr><td>\uD83C\uDF19 <strong>MEDICAMENTO 2 \u2013 Cena</strong></td><td>D\u00edas 1\u20135 y 8\u201312</td><td>${dIcons || 'Seg\u00fan prescripci\u00f3n'}</td><td>Oral \u00b7 Domicilio</td></tr>`;
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+function getNotes_TASBEVA(enabled) {
+  let n = '';
+  if (enabled.has('BEVA'))
+    n += `<li><strong>MEDICAMENTO 1</strong>: administraci\u00f3n IV en Hospital de D\u00eda los d\u00edas 1 y 15.</li>`;
+  if (enabled.has('LONS')) {
+    n += `<li><strong>MEDICAMENTO 2</strong>: tomar los d\u00edas 1\u20135 y 8\u201312. <strong>Tomar aproximadamente 1 hora despu\u00e9s del desayuno y 1 hora despu\u00e9s de la cena</strong> (2 veces al d\u00eda).</li>`;
+    n += `<li>D\u00edas 6\u20137 y 13\u201328: descanso farmacol\u00f3gico de MEDICAMENTO 2.</li>`;
+  }
+  return n;
+}
+
+function getLegend_TASBEVA(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('BEVA')) h += `<div class="legend-item leg-beva">\uD83C\uDFE5 MEDICAMENTO 1 IV \u2013 Hosp. D\u00eda (d\u00edas 1, 15)</div>`;
+  if (enabled.has('LONS')) h += `<div class="legend-item leg-lons">\uD83D\uDC8A MEDICAMENTO 2 \u2013 Domicilio (d\u00edas 1\u20135 y 8\u201312)</div>`;
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: CAPECITABINA – CCR (Cáncer Colorrectal)
+// Ciclos 21 días: días 1-14 tratamiento, días 15-21 descanso
+// CAPE_B = toma desayuno, CAPE_D = toma cena
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_CAPE() {
+  const days = [];
+  for (let d = 1; d <= 14; d++) {
+    days.push({ day: d, drug: 'CAPE_B' }); // desayuno
+    days.push({ day: d, drug: 'CAPE_D' }); // cena
+  }
+  return days;
+}
+
+function getPhase_CAPE(n) {
+  return `CCR CAPECITABINA \u00b7 Ciclo ${n} \u00b7 Ciclo 21 d\u00edas`;
+}
+
+function getSummaryRows_CAPE(useFilg, fs, fd, useEpo, epoItems, enabled, c500b, c150b, c500d, c150d) {
+  let r = '';
+  if (enabled.has('CAPE')) {
+    const bIcons = summaryPillIcons([
+      { label:'500mg', pillClass:'pill-500', count:c500b, labelColor:'var(--cape500)' },
+      { label:'150mg', pillClass:'pill-150', count:c150b, labelColor:'var(--cape150)' }
+    ]);
+    const dIcons = summaryPillIcons([
+      { label:'500mg', pillClass:'pill-500', count:c500d, labelColor:'var(--cape500)' },
+      { label:'150mg', pillClass:'pill-150', count:c150d, labelColor:'var(--cape150)' }
+    ]);
+    r += `<tr><td>\u2600\ufe0f <strong>CAPECITABINA \u2013 Desayuno</strong></td><td>D\u00edas 1\u201314</td><td>${bIcons || 'seg\u00fan prescripci\u00f3n'}</td><td>Oral \u00b7 Domicilio</td></tr>`;
+    r += `<tr><td>\uD83C\uDF19 <strong>CAPECITABINA \u2013 Cena</strong></td><td>D\u00edas 1\u201314</td><td>${dIcons || 'seg\u00fan prescripci\u00f3n'}</td><td>Oral \u00b7 Domicilio</td></tr>`;
+    r += `<tr><td colspan="4" style="color:#64748b;font-style:italic;font-size:0.78rem;padding-top:2px;">\u00a0\u00a0\u00a0\u00a0Tomar los comprimidos enteros media hora despu\u00e9s de desayunar y cenar.</td></tr>`;
+    r += `<tr><td colspan="4" style="background:#f0fdf4;color:#166534;font-size:0.78rem;padding:4px 10px;border-radius:4px;">\uD83D\uDCA4 D\u00edas 15\u201321: descanso (sin medicaci\u00f3n)</td></tr>`;
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+function getNotes_CAPE(enabled) {
+  let n = '';
+  if (enabled.has('CAPE')) {
+    n += `<li><strong>CAPECITABINA \u2013 C\u00f3mo tomar:</strong> Tome los comprimidos enteros (sin masticar ni partir), <strong>aproximadamente media hora despu\u00e9s del desayuno y media hora despu\u00e9s de la cena</strong>, con un vaso de agua. No los tome con el est\u00f3mago vac\u00edo.</li>`;
+    n += `<li><strong>Protecci\u00f3n solar \u2600\ufe0f:</strong> La capecitabina puede hacer que la piel sea m\u00e1s sensible al sol. Utilice crema de protecci\u00f3n solar con <strong>FPS 50+ (UVA+UVB)</strong> siempre que salga al exterior, incluso en d\u00edas nublados.</li>`;
+    n += `<li><strong>Cuidado de manos y pies \ud83e\udde4:</strong> Aplique crema <strong>hidratante abundante</strong> en las palmas de las manos y las plantas de los pies cada d\u00eda desde el inicio del tratamiento. Si nota enrojecimiento, descamaci\u00f3n, ampollas o dolor, avise a su equipo m\u00e9dico en la pr\u00f3xima consulta.</li>`;
+    n += `<li><strong>D\u00edas 1\u201314:</strong> tratamiento con capecitabina (dos tomas diarias). <strong>D\u00edas 15\u201321: descanso</strong>, sin medicaci\u00f3n oncol\u00f3gica.</li>`;
+  }
+  return n;
+}
+
+function getLegend_CAPE(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('CAPE')) {
+    h += `<div class="legend-item leg-cape500">\u2600\ufe0f Comprimidos 500 mg</div>`;
+    h += `<div class="legend-item leg-cape150">\uD83D\uDFE0 Comprimidos 150 mg</div>`;
+    h += `<div class="legend-item" style="background:#fefce8;border:1px solid #fde047;color:#a16207;">\u2600\ufe0f Toma Desayuno</div>`;
+    h += `<div class="legend-item" style="background:#fdf4ff;border:1px solid #d8b4fe;color:#7e22ce;">\uD83C\uDF19 Toma Cena</div>`;
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: HER2 – Cáncer de Mama
+// TRASTUZUMAB SC día 1 · TUCATINIB 300mg/12h todos los días · CAPECITABINA días 1–14
+// Ciclos 21 días
+// ═══════════════════════════════════════════════════════════════════════════════
+function getCycleDrugs_HER2() {
+  const days = [];
+  days.push({ day: 1, drug: 'TRAST' }); // Trastuzumab SC Hospital Día 1
+  for (let d = 1; d <= 21; d++) {
+    days.push({ day: d, drug: 'TUCA_B' }); // Tucatinib mañana, todos los días
+    days.push({ day: d, drug: 'TUCA_D' }); // Tucatinib noche, todos los días
+  }
+  for (let d = 1; d <= 14; d++) {
+    days.push({ day: d, drug: 'CAPE_B' }); // Capecitabina desayuno días 1-14
+    days.push({ day: d, drug: 'CAPE_D' }); // Capecitabina cena días 1-14
+  }
+  return days;
+}
+
+function getPhase_HER2(n) {
+  return `Cáncer de Mama HER2 · Ciclo ${n} · 21 días`;
+}
+
+function getLegend_HER2(useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('TRAST')) h += `<div class="legend-item leg-trast">🏥 TRASTUZUMAB SC – Hosp. Día (día 1)</div>`;
+  if (enabled.has('TUCA'))  h += `<div class="legend-item leg-tuca">💊 TUCATINIB – Domicilio (todos los días)</div>`;
+  if (enabled.has('CAPE')) {
+    h += `<div class="legend-item leg-cape500">☀ Capecitabina 500 mg</div>`;
+    h += `<div class="legend-item leg-cape150">🟠 Capecitabina 150 mg</div>`;
+    h += `<div class="legend-item" style="background:#fefce8;border:1px solid #fde047;color:#a16207;">☀️ Toma Desayuno</div>`;
+    h += `<div class="legend-item" style="background:#fdf4ff;border:1px solid #d8b4fe;color:#7e22ce;">🌙 Toma Cena/Noche</div>`;
+  }
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+function getNotes_HER2(enabled) {
+  let n = '';
+  if (enabled.has('TRAST'))
+    n += `<li><strong>TRASTUZUMAB SC</strong>: administración subcutánea en Hospital de Día el día 1 del ciclo.</li>`;
+  if (enabled.has('TUCA')) {
+    n += `<li><strong>TUCATINIB – Cómo tomar:</strong> Se puede tomar <strong>con o sin comida</strong>. Tome las dos tomas con aproximadamente <strong>12 horas de diferencia</strong> (por ejemplo, mañana y noche). Puede tomarse al mismo tiempo que la capecitabina. No masticar ni partir los comprimidos.</li>`;
+    n += `<li><strong>TUCATINIB – Todos los días del ciclo</strong>, sin días de descanso (días 1–21).</li>`;
+  }
+  if (enabled.has('CAPE')) {
+    n += `<li><strong>CAPECITABINA – Cómo tomar:</strong> Tome los comprimidos enteros (sin masticar ni partir), <strong>aproximadamente media hora después del desayuno y media hora después de la cena</strong>, con un vaso de agua. No los tome con el estómago vacío.</li>`;
+    n += `<li><strong>Protección solar ☀️:</strong> La capecitabina puede hacer que la piel sea más sensible al sol. Utilice crema de protección solar con <strong>FPS 50+ (UVA+UVB)</strong> siempre que salga al exterior, incluso en días nublados.</li>`;
+    n += `<li><strong>Cuidado de manos y pies 🧤:</strong> Aplique crema <strong>hidratante abundante</strong> en las palmas de las manos y las plantas de los pies cada día desde el inicio del tratamiento. Si nota enrojecimiento, descamación, ampollas o dolor, avise a su equipo médico en la próxima consulta.</li>`;
+    n += `<li><strong>Capecitabina días 1–14</strong> (dos tomas al día). <strong>Días 15–21: descanso de capecitabina</strong> (Tucatinib continúa).</li>`;
+  }
+  return n;
+}
+
+function getSummaryRows_HER2(useFilg, fs, fd, useEpo, epoItems, enabled, tucaCfg, c500b, c150b, c500d, c150d) {
+  let r = '';
+  if (enabled.has('TRAST'))
+    r += row('🏥', 'TRASTUZUMAB SC', 'Día 1', '600 mg SC', 'Hospital de Día');
+  if (enabled.has('TUCA') && tucaCfg) {
+    const mIcons = summaryPillIcons([
+      { label:'150mg', pillClass:'pill-tuca150', count:tucaCfg.t150b, labelColor:'#be185d' },
+      { label:'50mg',  pillClass:'pill-tuca50',  count:tucaCfg.t50b,  labelColor:'#fda4af' }
+    ]);
+    const nIcons = summaryPillIcons([
+      { label:'150mg', pillClass:'pill-tuca150', count:tucaCfg.t150d, labelColor:'#be185d' },
+      { label:'50mg',  pillClass:'pill-tuca50',  count:tucaCfg.t50d,  labelColor:'#fda4af' }
+    ]);
+    r += `<tr><td>☀️ <strong>TUCATINIB – Mañana</strong></td><td>Días 1–21</td><td>${mIcons || 'según prescripción'}</td><td>Oral · Domicilio</td></tr>`;
+    r += `<tr><td>🌙 <strong>TUCATINIB – Noche</strong></td><td>Días 1–21</td><td>${nIcons || 'según prescripción'}</td><td>Oral · Domicilio</td></tr>`;
+  }
+  if (enabled.has('CAPE')) {
+    const bIcons = summaryPillIcons([
+      { label:'500mg', pillClass:'pill-500', count:c500b, labelColor:'var(--cape500)' },
+      { label:'150mg', pillClass:'pill-150', count:c150b, labelColor:'var(--cape150)' }
+    ]);
+    const dIcons = summaryPillIcons([
+      { label:'500mg', pillClass:'pill-500', count:c500d, labelColor:'var(--cape500)' },
+      { label:'150mg', pillClass:'pill-150', count:c150d, labelColor:'var(--cape150)' }
+    ]);
+    r += `<tr><td>☀️ <strong>CAPECITABINA – Desayuno</strong></td><td>Días 1–14</td><td>${bIcons || 'según prescripción'}</td><td>Oral · Domicilio</td></tr>`;
+    r += `<tr><td>🌙 <strong>CAPECITABINA – Cena</strong></td><td>Días 1–14</td><td>${dIcons || 'según prescripción'}</td><td>Oral · Domicilio</td></tr>`;
+    r += `<tr><td colspan="4" style="background:#f0fdf4;color:#166534;font-size:0.78rem;padding:4px 10px;border-radius:4px;">💤 Días 15–21: descanso de capecitabina (Tucatinib continúa)</td></tr>`;
+  }
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+
+// Helper: genera iconos de comprimido para el resumen del ciclo (sin drag)
+function summaryPillIcons(items) {
+  // items = [{ label, pillClass, count, labelColor }]
+  if (!items || !items.length) return '';
+  let h = `<div style="display:flex;flex-direction:column;gap:2px;">`;
+  items.forEach(i => {
+    if (!i.count || i.count <= 0) return;
+    h += `<div style="display:flex;align-items:center;gap:3px;">`;
+    h += `<span style="font-size:0.62rem;color:${i.labelColor || '#555'};min-width:26px;">${i.label}</span>`;
+    for (let x = 0; x < i.count; x++) {
+      h += `<span class="${i.pillClass}" style="display:inline-block;flex-shrink:0;"></span>`;
+    }
+    h += `</div>`;
+  });
+  h += `</div>`;
+  return h;
+}
+
+// Helper: render graphic pill symbols for a given count and size class
+function pillSymbols(count, cls, dragAttrs, dataDrug, dataSrcdate) {
+  if (count <= 0) return '';
+  let pills = '';
+  for (let i = 0; i < count; i++) {
+    pills += `<span class="${cls}" ${dragAttrs} data-drug="${dataDrug}" data-srcdate="${dataSrcdate}" title="${dataDrug.includes('500') ? '500 mg' : '150 mg'}"></span>`;
+  }
+  return pills;
+}
+
+// Renders the special CAPE cell (breakfast + dinner blocks)
+function buildCapeMedBlock(cycDay, c500b, c150b, c500d, c150d, isDraggable, dateKey, oralDays) {
+  let h = '';
+  const showB = oralDays && oralDays.capeBkfst  ? oralDays.capeBkfst.has(cycDay)  : (cycDay <= 14 && (c500b > 0 || c150b > 0));
+  const showD = oralDays && oralDays.capeDinner ? oralDays.capeDinner.has(cycDay) : (cycDay <= 14 && (c500d > 0 || c150d > 0));
+  if (!showB && !showD) return '';
+
+  const useWrapper = showB && showD;
+  const mbB = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, ['CAPE_B','CAPE_150B'], 'capeBkfst');
+  const mbD = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, ['CAPE_D','CAPE_150D'], 'capeDinner');
+  if (useWrapper) {
+    const wrap = mealBlockAttrs(dateKey, ['CAPE_B','CAPE_150B','CAPE_D','CAPE_150D'], 'capeBkfst+capeDinner');
+    h += `<div class="meal-pair-wrap"${wrap.drag}>${wrap.del ? `<div class="meal-pair-del">${wrap.del}</div>` : ''}`;
+  }
+
+  // Desayuno block
+  if (showB) {
+    h += `<div class="cape-meal-block breakfast"${mbB.drag}>`;
+    const _delB = useWrapper ? singleDelBtn(dateKey, ['CAPE_B','CAPE_150B'], 'capeBkfst') : mbB.del;
+    h += `<div class="cape-meal-label" style="display:flex;align-items:center;">\u2600\ufe0f Desayuno${_delB}</div>`;
+    h += drugHeader('CAPECITABINA', 'var(--cape500)');
+    if (c500b > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--cape500)">500mg</span>`;
+      for (let i = 0; i < c500b; i++) h += `<span class="pill-500" title="Capecitabina 500mg"></span>`;
+      h += `</div>`;
+    }
+    if (c150b > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--cape150)">150mg</span>`;
+      for (let i = 0; i < c150b; i++) h += `<span class="pill-150" title="Capecitabina 150mg"></span>`;
+      h += `</div>`;
+    }
+    h += `</div>`;
+  }
+
+  // Cena block
+  if (showD) {
+    h += `<div class="cape-meal-block dinner"${mbD.drag}>`;
+    const _delD = useWrapper ? singleDelBtn(dateKey, ['CAPE_D','CAPE_150D'], 'capeDinner') : mbD.del;
+    h += `<div class="cape-meal-label" style="display:flex;align-items:center;">\uD83C\uDF19 Cena${_delD}</div>`;
+    h += drugHeader('CAPECITABINA', 'var(--cape500)');
+    if (c500d > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--cape500)">500mg</span>`;
+      for (let i = 0; i < c500d; i++) h += `<span class="pill-500" title="Capecitabina 500mg"></span>`;
+      h += `</div>`;
+    }
+    if (c150d > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--cape150)">150mg</span>`;
+      for (let i = 0; i < c150d; i++) h += `<span class="pill-150" title="Capecitabina 150mg"></span>`;
+      h += `</div>`;
+    }
+    h += `</div>`;
+  }
+  if (useWrapper) h += `</div>`; // cierre meal-pair-wrap
+
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROTOCOL: MEDICAMENTO 7 ORAL – CP (Cáncer de Pulmón)
+// Ciclos 21/28 días; tratamiento días 2, 3, (±4)
+// ═══════════════════════════════════════════════════════════════════════════════
+function getEtopConfig() {
+  const day4      = document.getElementById('etopDexaDay4')?.checked || false;
+  const dexaDay4  = document.getElementById('etopDexaDay4')?.checked || false;
+  const cycleDays = parseInt(document.getElementById('etopCycleDays')?.value || '21');
+  const e100m = parseInt(document.getElementById('etop100M')?.value || '0');
+  const e50m  = parseInt(document.getElementById('etop50M')?.value  || '0');
+  const e100n = parseInt(document.getElementById('etop100N')?.value || '0');
+  const e50n  = parseInt(document.getElementById('etop50N')?.value  || '0');
+  const hasNight = (e100n + e50n) > 0;
+  const ondaOn   = document.getElementById('ondaToggle')?.checked || false;
+  const ondaTomas = document.getElementById('ondaTomas')?.value || 'M';   // M or MD
+  const ondaDias  = document.getElementById('ondaDias')?.value  || '23';  // '2','3','23','234',...
+  const ondaDay4  = false; // ondansetrón no se extiende al día 4
+  return { day4, dexaDay4, cycleDays, e100m, e50m, e100n, e50n, hasNight,
+           ondaOn, ondaTomas, ondaDias, ondaDay4 };
+}
+
+function getCycleDrugs_ETOPORAL(cfg) {
+  const days = [];
+  // MEDICAMENTO 7: strictly days 2 and 3 only (day4 = only dexa)
+  [2, 3].forEach(d => {
+    if (cfg.e100m > 0) days.push({ day: d, drug: 'ETOP_100M' });
+    if (cfg.e50m  > 0) days.push({ day: d, drug: 'ETOP_50M'  });
+    if (cfg.hasNight) {
+      if (cfg.e100n > 0) days.push({ day: d, drug: 'ETOP_100N' });
+      if (cfg.e50n  > 0) days.push({ day: d, drug: 'ETOP_50N'  });
+    }
+  });
+
+  // Dexametasona 8mg (mañana)
+  const dexaDays = [2, 3, ...(cfg.dexaDay4 ? [4] : [])];
+  dexaDays.forEach(d => days.push({ day: d, drug: 'DEXA8_M' }));
+
+  // Ondansetrón
+  if (cfg.ondaOn) {
+    const ondaDayList = cfg.ondaDias.split('').map(Number).filter(n => n >= 2 && n <= 4);
+    const includeMorn = true; // always morning
+    const includeNight = cfg.ondaTomas === 'MD';
+    ondaDayList.forEach(d => {
+      if (includeMorn)  days.push({ day: d, drug: 'ONDA_M' });
+      if (includeNight && cfg.hasNight) days.push({ day: d, drug: 'ONDA_N' });
+    });
+    if (cfg.ondaDay4 && cfg.day4) {
+      if (includeMorn)  days.push({ day: 4, drug: 'ONDA_M' });
+      if (includeNight && cfg.hasNight) days.push({ day: 4, drug: 'ONDA_N' });
+    }
+  }
+
+  return days;
+}
+
+function getPhase_ETOPORAL(n, cycleDays) {
+  return `CP Et\u00f3posido oral \u00b7 Ciclo ${n} (${cycleDays} d\u00edas)`;
+}
+
+// Build etop cell block for one day
+function buildEtopMealBlock(cycDay, cfg, isDraggable, dateKey, oralDays) {
+  const showMorning = oralDays && oralDays.etopMorning ? oralDays.etopMorning.has(cycDay) : [2,3,...(cfg.day4?[4]:[])].includes(cycDay);
+  const showNight   = oralDays && oralDays.etopNight   ? oralDays.etopNight.has(cycDay)   : (cfg.hasNight && [2,3].includes(cycDay));
+  if (!showMorning && !showNight) return '';
+  const showEtop = showMorning && cfg.e100m + cfg.e50m > 0; // mostrar etopósido solo si hay dosis
+
+  // Cuando el día está en el set de mañana, mostramos lo que la cfg defina (Dexa, Onda, Etop)
+  const hasDexa   = showMorning && true; // siempre acompaña al bloque mañana si la cfg lo tenía
+  const ondaMorn  = showMorning && cfg.ondaOn;
+  const ondaNight = showNight && cfg.ondaOn && cfg.ondaTomas === 'MD';
+  const hasNight  = showNight;
+
+  function capsules(count100, count50, suffix, dateK) {
+    let h = '';
+    if (count100 > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--etop100);font-size:0.56rem;">100mg</span>`;
+      for (let i = 0; i < count100; i++) {
+        const drag = isDraggable ? `draggable="true" ondragstart="onDragStart(event,'${dateK}','ETOP_100${suffix}')" ondragend="onDragEnd(event)"` : '';
+        h += `<span class="capsule-100" ${drag} data-drug="ETOP_100${suffix}" data-srcdate="${dateK}" title="100mg"></span>`;
+      }
+      h += `</div>`;
+    }
+    if (count50 > 0) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--etop50);font-size:0.56rem;">50mg</span>`;
+      for (let i = 0; i < count50; i++) {
+        const drag = isDraggable ? `draggable="true" ondragstart="onDragStart(event,'${dateK}','ETOP_50${suffix}')" ondragend="onDragEnd(event)"` : '';
+        h += `<span class="capsule-50" ${drag} data-drug="ETOP_50${suffix}" data-srcdate="${dateK}" title="50mg"></span>`;
+      }
+      h += `</div>`;
+    }
+    return h;
+  }
+
+  let h = '';
+
+  const mDrugs = ['DEXA8_M', 'ONDA_M', 'ETOP_100M', 'ETOP_50M'].filter(d => {
+    if (d === 'DEXA8_M') return hasDexa;
+    if (d === 'ONDA_M') return ondaMorn;
+    if (d === 'ETOP_100M') return showEtop && cfg.e100m > 0;
+    if (d === 'ETOP_50M') return showEtop && cfg.e50m > 0;
+    return false;
+  });
+  const nDrugs = ['ONDA_N', 'ETOP_100N', 'ETOP_50N'].filter(d => {
+    if (d === 'ONDA_N') return ondaNight;
+    if (d === 'ETOP_100N') return showEtop && cfg.e100n > 0;
+    if (d === 'ETOP_50N') return showEtop && cfg.e50n > 0;
+    return false;
+  });
+  // Si el día tiene mañana Y noche → wrapper único draggable
+  const useWrapper = showMorning && hasNight;
+  const mbEM = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, mDrugs, 'etopMorning');
+  const mbEN = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, nDrugs, 'etopNight');
+  if (useWrapper) {
+    const wrap = mealBlockAttrs(dateKey, mDrugs.concat(nDrugs), 'etopMorning+etopNight');
+    h += `<div class="meal-pair-wrap"${wrap.drag}>${wrap.del ? `<div class="meal-pair-del">${wrap.del}</div>` : ''}`;
+  }
+
+  // MAÑANA block
+  if (showMorning) {
+  h += `<div class="cape-meal-block breakfast"${mbEM.drag}>`;
+  h += `<div class="cape-meal-label" style="display:flex;align-items:center;">\u2600\ufe0f Ma\u00f1ana${mbEM.del}</div>`;
+  // Dexametasona
+  if (hasDexa) {
+    h += `<div class="cape-pill-row">`;
+    h += `<span class="cape-pill-label" style="color:var(--dexa8);font-size:0.56rem;">Dexa 8mg</span>`;
+    for (let i = 0; i < 2; i++) h += `<span class="dexa8-pill" title="Dexametasona 4mg"></span>`;
+    h += `</div>`;
+  }
+  // Ondansetrón mañana
+  if (ondaMorn) {
+    h += `<div class="cape-pill-row">`;
+    h += `<span class="cape-pill-label" style="color:var(--onda);font-size:0.56rem;">Onda 4mg</span>`;
+    h += `<span class="onda-pill" title="Ondansetr\u00f3n 4mg"></span>`;
+    h += `</div>`;
+  }
+  // MEDICAMENTO 7 mañana
+  if (showEtop) {
+    h += `<div style="text-align:center;font-size:0.58rem;font-weight:800;letter-spacing:0.06em;color:var(--etop100);text-transform:uppercase;margin:3px 0 2px;">MEDICAMENTO 7</div>`;
+    h += capsules(cfg.e100m, cfg.e50m, 'M', dateKey);
+  }
+  h += `</div>`;
+  } // fin showMorning
+
+  // NOCHE block
+  if (hasNight) {
+    h += `<div class="cape-meal-block dinner"${mbEN.drag}>`;
+    h += `<div class="cape-meal-label" style="display:flex;align-items:center;">\uD83C\uDF19 Noche${mbEN.del}</div>`;
+    // Ondansetrón noche
+    if (ondaNight) {
+      h += `<div class="cape-pill-row">`;
+      h += `<span class="cape-pill-label" style="color:var(--onda);font-size:0.56rem;">Onda 4mg</span>`;
+      h += `<span class="onda-pill" title="Ondansetr\u00f3n 4mg"></span>`;
+      h += `</div>`;
+    }
+    // MEDICAMENTO 7 noche
+    h += `<div style="text-align:center;font-size:0.58rem;font-weight:800;letter-spacing:0.06em;color:var(--etop100);text-transform:uppercase;margin:3px 0 2px;">MEDICAMENTO 7</div>`;
+    h += capsules(cfg.e100n, cfg.e50n, 'N', dateKey);
+    h += `</div>`;
+  }
+  if (useWrapper) h += `</div>`; // cierre meal-pair-wrap
+
+  return h;
+}
+
+function getSummaryRows_ETOPORAL(cfg, useFilg, fs, fd, useEpo, epoItems, enabled) {
+  let r = '';
+  // Etopósido strictly days 2 and 3
+  const etopDays = [2, 3];
+  const dexaDays = [2, 3, ...(cfg.dexaDay4 ? [4] : [])];
+
+  // 1º DEXAMETASONA
+  if (enabled.has('DEXA8')) {
+    r += `<tr><td>\uD83D\uDC8A <strong>DEXAMETASONA 8mg</strong></td><td>D\u00edas ${dexaDays.join(', ')}</td><td>2 comp. 4mg</td><td>Oral \u00b7 Ma\u00f1ana</td></tr>`;
+  }
+
+  // 2º ONDANSETRÓN
+  if (enabled.has('ONDA') && cfg.ondaOn) {
+    const ondaDayList = cfg.ondaDias.split('').map(Number).filter(n => n >= 2 && n <= 4);
+    const tomaStr = cfg.ondaTomas === 'MD' ? 'ma\u00f1ana y noche' : 'ma\u00f1ana';
+    r += `<tr><td>\uD83D\uDC9A <strong>ONDANSETR\u00d3N 4mg</strong></td><td>D\u00edas ${[...new Set(ondaDayList)].sort().join(', ')}</td><td>1 comp. (${tomaStr})</td><td>Oral \u00b7 30 min antes ET\u00d3POSIDO</td></tr>`;
+  }
+
+  // 3º MEDICAMENTO 7
+  if (enabled.has('ETOP')) {
+    const mIcons = summaryPillIcons([
+      { label:'100mg', pillClass:'capsule-100', count:cfg.e100m, labelColor:'var(--etop100)' },
+      { label:'50mg',  pillClass:'capsule-50',  count:cfg.e50m,  labelColor:'var(--etop50)' }
+    ]);
+    r += `<tr><td>\u2600\ufe0f <strong>ET\u00d3POSIDO \u2013 Ma\u00f1ana</strong></td><td>D\u00edas ${etopDays.join(', ')}</td><td>${mIcons || 'seg\u00fan prescripci\u00f3n'}</td><td>C\u00e1psulas \u00b7 Domicilio</td></tr>`;
+    if (cfg.hasNight) {
+      const nIcons = summaryPillIcons([
+        { label:'100mg', pillClass:'capsule-100', count:cfg.e100n, labelColor:'var(--etop100)' },
+        { label:'50mg',  pillClass:'capsule-50',  count:cfg.e50n,  labelColor:'var(--etop50)' }
+      ]);
+      r += `<tr><td>\uD83C\uDF19 <strong>ET\u00d3POSIDO \u2013 Noche</strong></td><td>D\u00edas ${etopDays.join(', ')}</td><td>${nIcons}</td><td>C\u00e1psulas \u00b7 Domicilio</td></tr>`;
+    }
+    r += `<tr><td colspan="4" style="font-style:italic;font-size:0.75rem;color:#64748b;">\u00a0\u00a0Tomar con el est\u00f3mago vac\u00edo.</td></tr>`;
+  }
+
+  r += supportRows(useFilg, fs, fd, useEpo, epoItems);
+  return r;
+}
+function getNotes_ETOPORAL(cfg, enabled) {
+  let n = '';
+  const treatDays = [2, 3, ...(cfg.day4 ? [4] : [])];
+  if (enabled.has('ETOP')) {
+    n += `<li><strong>ET\u00d3POSIDO:</strong> Tome las c\u00e1psulas <strong>con el est\u00f3mago vac\u00edo</strong>` +
+      (cfg.hasNight ? ` en dos tomas (ma\u00f1ana y noche)` : ` por la ma\u00f1ana`) +
+      `. No mastique ni abra las c\u00e1psulas. Si vomita en la hora siguiente a la toma, no repita la dosis; cons\u00falte con su equipo.</li>`;
+  }
+  if (enabled.has('DEXA8')) {
+    n += `<li><strong>DEXAMETASONA 8mg:</strong> Tome <strong>2 comprimidos de 4mg por la ma\u00f1ana</strong>, con o sin alimentos.</li>`;
+  }
+  if (enabled.has('ONDA') && cfg.ondaOn) {
+    n += `<li><strong>ONDANSETR\u00d3N 4mg:</strong> T\u00f3melo <strong>media hora antes</strong> que el Et\u00f3posido. Ayuda a prevenir las n\u00e1useas.</li>`;
+  }
+  n += `<li>D\u00edas de tratamiento: <strong>${treatDays.join(', ')}</strong>. El d\u00eda 1 y los d\u00edas restantes del ciclo no hay medicaci\u00f3n oncol\u00f3gica oral.</li>`;
+  n += `<li>Guarde las c\u00e1psulas a temperatura ambiente, fuera del alcance de los ni\u00f1os y lejos de la humedad.</li>`;
+  return n;
+}
+
+function getLegend_ETOPORAL(cfg, useFilg, useEpo, enabled) {
+  let h = '';
+  if (enabled.has('ETOP')) {
+    h += `<div class="legend-item leg-etop100">\uD83D\uDC8A C\u00e1ps. 100mg ET\u00d3POSIDO</div>`;
+    h += `<div class="legend-item leg-etop50">\uD83D\uDC8A C\u00e1ps. 50mg ET\u00d3POSIDO</div>`;
+  }
+  if (enabled.has('DEXA8'))
+    h += `<div class="legend-item leg-dexa8">\uD83D\uDC8A DEXAMETASONA 8mg \u2013 Ma\u00f1ana</div>`;
+  if (enabled.has('ONDA') && cfg.ondaOn)
+    h += `<div class="legend-item leg-onda">\uD83D\uDC9A ONDANSETR\u00d3N 4mg</div>`;
+  h += supportLegend(useFilg, useEpo);
+  return h;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PILL RENDERING HELPERS (generic)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Renders FILG and EPO tags for a day (used after oral-med blocks so no se pierden)
+function buildSupportMedTags(dateKey, cycDay, drugMap, TAGS, ORDER) {
+  if (!cycDay || !drugMap[cycDay]) return '';
+  const supportDrugs = (drugMap[cycDay] || []).filter(d => d === 'FILG' || d === 'EPO');
+  if (!supportDrugs.length) return '';
+  const isDraggable = document.body.classList.contains('drag-mode');
+  const sorted = [...supportDrugs].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+  let h = '<div class="day-meds">';
+  sorted.forEach(drug => {
+    if (!TAGS[drug]) return;
+    const dragAttrs = isDraggable
+      ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','${drug}')" ondragend="onDragEnd(event)"`
+      : '';
+    const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','${drug}')">×</span>`;
+    h += `<span class="med-tag ${TAGS[drug][0]}"${dragAttrs} data-drug="${drug}" data-srcdate="${dateKey}">${TAGS[drug][1]}${delBtn}</span>`;
+  });
+  h += '</div>';
+  return h;
+}
+
+function pillRow(label, labelColor, count, pillClass, titleStr) {
+  if (count <= 0) return '';
+  let h = `<div class="cape-pill-row"><span class="cape-pill-label" style="color:${labelColor};font-size:0.56rem;">${label}</span>`;
+  for (let i = 0; i < count; i++) h += `<span class="${pillClass}" title="${titleStr}"></span>`;
+  h += `</div>`;
+  return h;
+}
+
+function drugHeader(name, color) {
+  return `<div style="text-align:center;font-size:0.56rem;font-weight:800;letter-spacing:0.05em;color:${color};text-transform:uppercase;margin:2px 0 1px;">${name}</div>`;
+}
+
+// Genera atributos drag + botón eliminar para un meal block
+// category opcional: identifica qué set de cs.oralDays se debe mover (p.ej. 'rchopPred')
+function mealBlockAttrs(dateKey, drugList, category) {
+  const isDrag = document.body.classList.contains('drag-mode');
+  if (!isDrag) return { drag: '', del: '' };
+  const drugsJson = JSON.stringify(drugList).replace(/"/g, '&quot;');
+  const cat = category || '';
+  return {
+    drag: ` draggable="true" ondragstart="onMealDragStart(event,'${dateKey}',${drugsJson},'${cat}')" ondragend="onDragEnd(event)"`,
+    del:  `<span class="meal-del-btn" onclick="event.stopPropagation();deleteMealFromDay('${dateKey}',${drugsJson},'${cat}')">×</span>`
+  };
+}
+
+// Botón de eliminar individual para un sub-bloque dentro de un wrapper compuesto.
+// Elimina solo la category indicada (no el wrapper completo).
+function singleDelBtn(dateKey, drugList, category) {
+  const isDrag = document.body.classList.contains('drag-mode');
+  if (!isDrag) return '';
+  const drugsJson = JSON.stringify(drugList).replace(/"/g, '&quot;');
+  return `<span class="meal-del-btn meal-del-single" onclick="event.stopPropagation();deleteSingleMealToma('${dateKey}',${drugsJson},'${category}')">×</span>`;
+}
+
+function getVepembConfig() {
+  return {
+    procarb: document.getElementById('vepProcarbToggle')?.checked || false,
+    procarb50: parseInt(document.getElementById('vepProcarb50')?.value || '0'),
+    etop: document.getElementById('vepEtopToggle')?.checked || false,
+    etop100: parseInt(document.getElementById('vepEtop100')?.value || '0'),
+    etop50: parseInt(document.getElementById('vepEtop50')?.value || '0'),
+    onda: document.getElementById('vepOndaToggle')?.checked || false,
+    pred: document.getElementById('vepPredToggle')?.checked || false,
+    pred30: parseInt(document.getElementById('vepPred30')?.value || '0'),
+    pred10: parseInt(document.getElementById('vepPred10')?.value || '0'),
+  };
+}
+
+function getRchopPredConfig() {
+  return {
+    pred30: parseInt(document.getElementById('rchopPred30')?.value || '0'),
+    pred10: parseInt(document.getElementById('rchopPred10')?.value || '0'),
+  };
+}
+
+function getLonConfig() {
+  return {
+    l20b: parseInt(document.getElementById('lons20B')?.value || '0'),
+    l15b: parseInt(document.getElementById('lons15B')?.value || '0'),
+    l20d: parseInt(document.getElementById('lons20D')?.value || '0'),
+    l15d: parseInt(document.getElementById('lons15D')?.value || '0'),
+  };
+}
+
+function getTucaConfig() {
+  return {
+    t150b: parseInt(document.getElementById('tuca150B')?.value || '2'),
+    t50b:  parseInt(document.getElementById('tuca50B')?.value  || '0'),
+    t150d: parseInt(document.getElementById('tuca150D')?.value || '2'),
+    t50d:  parseInt(document.getElementById('tuca50D')?.value  || '0'),
+  };
+}
+
+// Build a single morning-block for oral meds (VEPEMB, RCHOP prednisone)
+function buildOralMorningBlock(items) {
+  // items: [{label, labelColor, count, pillClass, title}]
+  const rows = items.map(i => pillRow(i.label, i.labelColor, i.count, i.pillClass, i.title)).filter(Boolean);
+  if (!rows.length) return '';
+  return `<div class="cape-meal-block breakfast"><div class="cape-meal-label">☀️ Mañana</div>${rows.join('')}</div>`;
+}
+
+// Build Lonsurf cell (breakfast + dinner)
+function buildLonCellBlock(cycDay, lon, isDraggable, dateKey, oralDays) {
+  const showB = oralDays && oralDays.lonsBkfst  ? oralDays.lonsBkfst.has(cycDay)  : [1,2,3,4,5,8,9,10,11,12].includes(cycDay);
+  const showD = oralDays && oralDays.lonsDinner ? oralDays.lonsDinner.has(cycDay) : [1,2,3,4,5,8,9,10,11,12].includes(cycDay);
+  if (!showB && !showD) return '';
+  const mRows = [
+    pillRow('20mg', '#1e3a8a', lon.l20b, 'pill-lons20', 'Medicamento 2 oral 20mg'),
+    pillRow('15mg', '#166534', lon.l15b, 'pill-lons15', 'Medicamento 2 oral 15mg'),
+  ].filter(Boolean).join('');
+  const dRows = [
+    pillRow('20mg', '#1e3a8a', lon.l20d, 'pill-lons20', 'Medicamento 2 oral 20mg'),
+    pillRow('15mg', '#166534', lon.l15d, 'pill-lons15', 'Medicamento 2 oral 15mg'),
+  ].filter(Boolean).join('');
+  const hasB = showB && mRows;
+  const hasD = showD && dRows;
+  // Si ambas tomas existen → un único wrapper draggable que mueve ambas
+  const useWrapper = hasB && hasD;
+  let inner = '';
+  if (hasB) {
+    const mbLM = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, ['LONS'], 'lonsBkfst');
+    const _delLM = useWrapper ? singleDelBtn(dateKey, ['LONS'], 'lonsBkfst') : mbLM.del;
+    inner += `<div class="cape-meal-block breakfast"${mbLM.drag}><div class="cape-meal-label" style="display:flex;align-items:center;">☀️ Mañana${_delLM}</div>${drugHeader('MEDICAMENTO 2 ORAL', '#1e3a8a')}${mRows}</div>`;
+  }
+  if (hasD) {
+    const mbLD = useWrapper ? { drag:'', del:'' } : mealBlockAttrs(dateKey, ['LONS'], 'lonsDinner');
+    const _delLD = useWrapper ? singleDelBtn(dateKey, ['LONS'], 'lonsDinner') : mbLD.del;
+    inner += `<div class="cape-meal-block dinner"${mbLD.drag}><div class="cape-meal-label" style="display:flex;align-items:center;">🌙 Cena${_delLD}</div>${drugHeader('MEDICAMENTO 2 ORAL', '#1e3a8a')}${dRows}</div>`;
+  }
+  if (useWrapper) {
+    const wrap = mealBlockAttrs(dateKey, ['LONS'], 'lonsBkfst+lonsDinner');
+    return `<div class="meal-pair-wrap"${wrap.drag}>${wrap.del ? `<div class="meal-pair-del">${wrap.del}</div>` : ''}${inner}</div>`;
+  }
+  return inner;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CELL CONTENT BUILDERS FOR ORAL-MED PROTOCOLS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// VEPEMB: days 1-5 have PROCARB, PRED (oral, morning). Days 15-19 have ETOP (oral, morning).
+// Hospital meds (VINB, CYCLO, MITOX, BLEO) rendered as normal tags.
+function buildVepembCellContent(cycDay, vepCfg, drugMap, TAGS, ORDER, dateKey, oralDays) {
+  let h = '';
+  const isDraggable = document.body.classList.contains('drag-mode');
+  const inMorning1to5 = oralDays && oralDays.vepMorning1to5 && oralDays.vepMorning1to5.has(cycDay);
+  const inEtopMorning = oralDays && oralDays.vepEtopMorning && oralDays.vepEtopMorning.has(cycDay);
+  const hospitalDrugs = (drugMap[cycDay] || []).filter(d => ['VINB','CYCLO','MITOX','BLEO'].includes(d));
+  if (hospitalDrugs.length) {
+    const sorted = [...hospitalDrugs].sort((a,b) => ORDER.indexOf(a)-ORDER.indexOf(b));
+    h += '<div class="day-meds">';
+    sorted.forEach(drug => {
+      if (!TAGS[drug]) return;
+      const dragAttrs = isDraggable
+        ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','${drug}')" ondragend="onDragEnd(event)"`
+        : '';
+      const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','${drug}')">×</span>`;
+      h += `<span class="med-tag ${TAGS[drug][0]}"${dragAttrs} data-drug="${drug}" data-srcdate="${dateKey}">${TAGS[drug][1]}${delBtn}</span>`;
+    });
+    h += '</div>';
+  }
+  const items = [];
+  // Bloque mañana 1ª fase (Prednisona/Procarbazina) — días definidos en oralDays.vepMorning1to5
+  if (inMorning1to5) {
+    if (vepCfg && vepCfg.pred && (vepCfg.pred30 > 0 || vepCfg.pred10 > 0)) {
+      if (vepCfg.pred30 > 0) items.push({ label:'30mg', labelColor:'var(--pred)', count:vepCfg.pred30, pillClass:'pill-pred30', title:'Medicamento 3 oral 30mg', header:'MEDICAMENTO 3 ORAL' });
+      if (vepCfg.pred10 > 0) items.push({ label:'10mg', labelColor:'#0369a1', count:vepCfg.pred10, pillClass:'pill-pred10', title:'Medicamento 3 oral 10mg', header:null });
+    }
+    if (vepCfg && vepCfg.procarb && vepCfg.procarb50 > 0)
+      items.push({ label:'50mg', labelColor:'var(--procarb)', count:vepCfg.procarb50, pillClass:'pill-procarb50', title:'Medicamento 4 oral 50mg', header:'MEDICAMENTO 4 ORAL' });
+  }
+  // Bloque mañana 2ª fase (Etopósido + Ondansetrón) — días definidos en oralDays.vepEtopMorning
+  if (inEtopMorning) {
+    const etopItems = [];
+    if (vepCfg && vepCfg.etop && vepCfg.etop100 > 0)
+      etopItems.push({ label:'100mg', labelColor:'var(--etop100)', count:vepCfg.etop100, pillClass:'capsule-100', title:'Medicamento 7 oral 100mg' });
+    if (vepCfg && vepCfg.etop && vepCfg.etop50 > 0)
+      etopItems.push({ label:'50mg',  labelColor:'var(--etop50)',  count:vepCfg.etop50,  pillClass:'capsule-50',  title:'Medicamento 7 oral 50mg' });
+    const showOnda = vepCfg && vepCfg.onda;
+    const mbVE = mealBlockAttrs(dateKey, ['ETOP'], 'vepEtopMorning');
+    if (etopItems.length || showOnda) {
+      let block = `<div class="cape-meal-block breakfast"${mbVE.drag}><div class="cape-meal-label" style="display:flex;align-items:center;">☀️ Mañana${mbVE.del}</div>`;
+      if (showOnda) block += pillRow('Onda 4mg','var(--onda)',1,'onda-pill','Ondansetrón 4mg');
+      if (etopItems.length) {
+        block += drugHeader('MEDICAMENTO 7 ORAL', 'var(--etop100)');
+        etopItems.forEach(i => block += pillRow(i.label, i.labelColor, i.count, i.pillClass, i.title));
+      }
+      block += '</div>';
+      h += block;
+    }
+  } else if (items.length) {
+    const drugCodes = [...new Set(items.map(i => i.header).filter(Boolean).map(hdr =>
+      hdr === 'MEDICAMENTO 3 ORAL' ? 'PRED' : hdr === 'MEDICAMENTO 4 ORAL' ? 'PROCARB' : hdr))];
+    const mbV = mealBlockAttrs(dateKey, drugCodes, 'vepMorning1to5');
+    let block = `<div class="cape-meal-block breakfast"${mbV.drag}><div class="cape-meal-label" style="display:flex;align-items:center;">☀️ Mañana${mbV.del}</div>`;
+    let lastHeader = null;
+    items.forEach(i => {
+      if (i.header && i.header !== lastHeader) {
+        block += drugHeader(i.header, i.labelColor);
+        lastHeader = i.header;
+      }
+      block += pillRow(i.label, i.labelColor, i.count, i.pillClass, i.title);
+    });
+    block += '</div>';
+    h += block;
+  }
+  return h;
+}
+
+// RCHOP: days 2-5 show prednisona pill block; day 1 is just hospital meds (normal tags)
+function buildRchopCellContent(cycDay, rchopPred, drugMap, TAGS, ORDER, dateKey) {
+  let h = '';
+  // Render non-PRED hospital/support tags (PRED se muestra en el bloque de pastillas)
+  const nonPredDrugs = (drugMap[cycDay] || []).filter(d => d !== 'PRED');
+  if (nonPredDrugs.length) {
+    const isDraggable = document.body.classList.contains('drag-mode');
+    const sorted = [...nonPredDrugs].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+    h += '<div class="day-meds">';
+    sorted.forEach(drug => {
+      if (!TAGS[drug]) return;
+      const dragAttrs = isDraggable
+        ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','${drug}')" ondragend="onDragEnd(event)"`
+        : '';
+      const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','${drug}')">×</span>`;
+      h += `<span class="med-tag ${TAGS[drug][0]}"${dragAttrs} data-drug="${drug}" data-srcdate="${dateKey}">${TAGS[drug][1]}${delBtn}</span>`;
+    });
+    h += '</div>';
+  }
+  const mbR = mealBlockAttrs(dateKey, ['PRED'], 'rchopPred');
+  let block = `<div class="cape-meal-block breakfast"${mbR.drag}><div class="cape-meal-label" style="display:flex;align-items:center;">☀️ Mañana${mbR.del}</div>`;
+  block += drugHeader('MEDICAMENTO 3 ORAL', 'var(--pred)');
+  block += pillRow('30mg','var(--pred)',rchopPred.pred30,'pill-pred30','Prednisona 30mg');
+  block += pillRow('10mg','#0369a1',rchopPred.pred10,'pill-pred10','Prednisona 10mg');
+  block += '</div>';
+  h += block;
+  return h;
+}
+
+// TASBEVA: Lonsurf days show meal blocks; BEVA days show normal hospital tags
+function buildTasbevaCell(cycDay, lon, drugMap, TAGS, ORDER, dateKey, oralDays) {
+  let h = '';
+  const isDraggable = document.body.classList.contains('drag-mode');
+  // Hospital med tags (BEVA) con soporte para drag y eliminar
+  const beva = (drugMap[cycDay] || []).filter(d => d === 'BEVA');
+  if (beva.length) {
+    h += '<div class="day-meds">';
+    beva.forEach(drug => {
+      if (!TAGS[drug]) return;
+      const dragAttrs = isDraggable
+        ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','${drug}')" ondragend="onDragEnd(event)"`
+        : '';
+      const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','${drug}')">×</span>`;
+      h += `<span class="med-tag ${TAGS[drug][0]}"${dragAttrs} data-drug="${drug}" data-srcdate="${dateKey}">${TAGS[drug][1]}${delBtn}</span>`;
+    });
+    h += '</div>';
+  }
+  h += buildLonCellBlock(cycDay, lon, isDraggable, dateKey, oralDays);
+  return h;
+}
+
+// HER2: renders Trastuzumab tag (día 1), Tucatinib blocks (todos los días), Capecitabina blocks (días 1-14)
+function buildHer2CellContent(cycDay, tucaCfg, c500b, c150b, c500d, c150d, drugMap, TAGS, ORDER, dateKey, enabled) {
+  const isDraggable = document.body.classList.contains('drag-mode');
+  let h = '';
+
+  // Trastuzumab SC: tag en día 1
+  const trast = (drugMap[cycDay] || []).filter(d => d === 'TRAST');
+  if (trast.length) {
+    h += '<div class="day-meds">';
+    const dragAttrs = isDraggable
+      ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','TRAST')" ondragend="onDragEnd(event)"`
+      : '';
+    const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','TRAST')">×</span>`;
+    h += `<span class="med-tag tag-trast"${dragAttrs} data-drug="TRAST" data-srcdate="${dateKey}">🏥 TRASTUZUMAB SC${delBtn}</span>`;
+    h += '</div>';
+  }
+
+  const tucaActive = (drugMap[cycDay] || []).some(d => d === 'TUCA_B' || d === 'TUCA_D');
+  if (!tucaActive) return h;
+
+  const capeActive = cycDay >= 1 && cycDay <= 14;
+  const showCapeMorn = capeActive && enabled.has('CAPE') && (c500b > 0 || c150b > 0);
+  const showCapeNight = capeActive && enabled.has('CAPE') && (c500d > 0 || c150d > 0);
+  const showTucaMorn = enabled.has('TUCA') && (tucaCfg.t150b > 0 || tucaCfg.t50b > 0);
+  const showTucaNight = enabled.has('TUCA') && (tucaCfg.t150d > 0 || tucaCfg.t50d > 0);
+
+  // Bloque MAÑANA (Tucatinib + Capecitabina desayuno)
+  const mbMDrugs = [...(showTucaMorn ? ['TUCA_B'] : []), ...(showCapeMorn ? ['CAPE_B'] : [])];
+  const mbM = mealBlockAttrs(dateKey, mbMDrugs);
+  let morning = `<div class="cape-meal-block breakfast"${mbM.drag}>`;
+  morning += `<div class="cape-meal-label" style="display:flex;align-items:center;">☀️ Mañana${mbM.del}</div>`;
+  if (showTucaMorn) {
+    morning += drugHeader('TUCATINIB', '#be185d');
+    morning += pillRow('150mg', '#be185d', tucaCfg.t150b, 'pill-tuca150', 'Tucatinib 150mg');
+    morning += pillRow('50mg',  '#fda4af', tucaCfg.t50b,  'pill-tuca50',  'Tucatinib 50mg');
+  }
+  if (showCapeMorn) {
+    morning += drugHeader('CAPECITABINA', 'var(--cape500)');
+    morning += pillRow('500mg', 'var(--cape500)', c500b, 'pill-500', 'Capecitabina 500mg');
+    morning += pillRow('150mg', 'var(--cape150)', c150b, 'pill-150', 'Capecitabina 150mg');
+  }
+  morning += '</div>';
+  h += morning;
+
+  // Bloque NOCHE (Tucatinib + Capecitabina cena)
+  const mbNDrugs = [...(showTucaNight ? ['TUCA_D'] : []), ...(showCapeNight ? ['CAPE_D'] : [])];
+  const mbN = mealBlockAttrs(dateKey, mbNDrugs);
+  let night = `<div class="cape-meal-block dinner"${mbN.drag}>`;
+  night += `<div class="cape-meal-label" style="display:flex;align-items:center;">🌙 Noche${mbN.del}</div>`;
+  if (showTucaNight) {
+    night += drugHeader('TUCATINIB', '#be185d');
+    night += pillRow('150mg', '#be185d', tucaCfg.t150d, 'pill-tuca150', 'Tucatinib 150mg');
+    night += pillRow('50mg',  '#fda4af', tucaCfg.t50d,  'pill-tuca50',  'Tucatinib 50mg');
+  }
+  if (showCapeNight) {
+    night += drugHeader('CAPECITABINA', 'var(--cape500)');
+    night += pillRow('500mg', 'var(--cape500)', c500d, 'pill-500', 'Capecitabina 500mg');
+    night += pillRow('150mg', 'var(--cape150)', c150d, 'pill-150', 'Capecitabina 150mg');
+  }
+  night += '</div>';
+  h += night;
+
+  // Días 15-21: indicador de descanso de capecitabina
+  if (!capeActive) {
+    h += `<div style="font-size:0.55rem;color:#94a3b8;font-style:italic;padding:1px 3px;">💤 CAPE descanso</div>`;
+  }
+
+  return h;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MAIN GENERATE FUNCTION
+// ─────────────────────────────────────────────────────────────────────────────
+function generateCalendar() {
+  const protocol     = document.getElementById('protocol').value;
+  const cycleNum     = parseInt(document.getElementById('cycleNum').value);
+  const startDateVal = document.getElementById('cycleStart').value;
+  const _escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const patientName  = _escapeHtml(document.getElementById('patientName').value);
+  const patientHC    = _escapeHtml(document.getElementById('patientHC').value);
+  const patientDOB   = document.getElementById('patientDOB').value;
+
+  if (!startDateVal || !cycleNum) {
+    alert('Por favor, indica el n\u00famero de ciclo y la fecha del D\u00eda 1.');
+    return;
+  }
+  if (protocol === 'DEMO1' && (cycleNum < 1 || cycleNum > 6)) {
+    alert('\u26a0\ufe0f La versi\u00f3n DEMO 1 tiene un m\u00e1ximo de 6 ciclos.\nPor favor, introduce un n\u00famero de ciclo entre 1 y 6.');
+    document.getElementById('cycleNum').focus();
+    return;
+  }
+
+  // Protocol-specific pill configs
+  const isCAPE   = false;
+  const isETOP   = false;
+  const isVEPEMB = protocol === 'DEMO1';
+  const isRCHOP  = false;
+  const isTASBEVA= protocol === 'DEMO2';
+  const isHER2   = false;
+  const etopCfg  = isETOP   ? getEtopConfig()      : null;
+  const vepCfg   = isVEPEMB ? getVepembConfig()     : null;
+  const rchopPred= isRCHOP  ? getRchopPredConfig()  : null;
+  const lonCfg   = isTASBEVA? getLonConfig()         : null;
+  const tucaCfg  = isHER2   ? getTucaConfig()        : null;
+  // Days to show (0 = full cycle)
+  const daysToShowRaw = parseInt(document.getElementById('daysToShow')?.value || '0');
+  const c500b = (isCAPE || isHER2) ? (parseInt(document.getElementById('cape500B').value) || 0) : 0;
+  const c150b = (isCAPE || isHER2) ? (parseInt(document.getElementById('cape150B').value) || 0) : 0;
+  const c500d = (isCAPE || isHER2) ? (parseInt(document.getElementById('cape500D').value) || 0) : 0;
+  const c150d = (isCAPE || isHER2) ? (parseInt(document.getElementById('cape150D').value) || 0) : 0;
+
+  // Enabled drugs from checklist
+  const enabled = getEnabledKeys();
+
+  // Raw drugs for protocol
+  const rawDrugs =
+    protocol === 'DEMO1' ? getCycleDrugs_VEPEMB() :
+    protocol === 'DEMO2' ? getCycleDrugs_TASBEVA() :
+    [];
+
+  // Filter by checklist
+  const filtered = rawDrugs.filter(({ drug }) => enabled.has(codeToKey(drug)));
+
+  // Build drug map
+  const drugMap = {};
+  filtered.forEach(({ day, drug }) => {
+    if (!drugMap[day]) drugMap[day] = [];
+    drugMap[day].push(drug);
+  });
+
+  // Filgrastim
+  const useFilg = document.getElementById('filgToggle').checked;
+  const fs = useFilg ? parseInt(document.getElementById('filgStart').value) : 0;
+  const fd = useFilg ? parseInt(document.getElementById('filgDays').value)  : 0;
+  if (useFilg) {
+    for (let d = fs; d < fs + fd && d <= 35; d++) {
+      if (!drugMap[d]) drugMap[d] = [];
+      drugMap[d].push('FILG');
+    }
+  }
+
+  // Eritropoyetina (count + freq)
+  const useEpo   = document.getElementById('epoToggle').checked;
+  const epoStart = useEpo ? parseInt(document.getElementById('epoStart').value) : 0;
+  const epoCount = useEpo ? parseInt(document.getElementById('epoCount').value) : 0;
+  const epoFreq  = useEpo ? parseInt(document.getElementById('epoFreq').value)  : 0;
+  const epoItems = useEpo ? calcEpoDays(epoStart, epoCount, epoFreq) : [];
+  if (useEpo) {
+    epoItems.forEach(d => {
+      if (!drugMap[d]) drugMap[d] = [];
+      drugMap[d].push('EPO');
+    });
+  }
+
+  // Date map: cycle length
+  const startDate = new Date(startDateVal + 'T00:00:00');
+  const fullCycleDays = (isCAPE || isHER2) ? 21 : isETOP ? (etopCfg.cycleDays || 21) : 28;
+  const cycleDays = (daysToShowRaw > 0 && daysToShowRaw < fullCycleDays) ? daysToShowRaw : fullCycleDays;
+  const dateMap = {};
+  for (let d = 0; d < cycleDays; d++) {
+    const dt = new Date(startDate);
+    dt.setDate(startDate.getDate() + d);
+    dateMap[dt.toISOString().slice(0, 10)] = d + 1;
+  }
+
+  // Calendar bounds (Mon–Sun)
+  const dow = startDate.getDay();
+  const calStart = new Date(startDate);
+  calStart.setDate(startDate.getDate() + (dow === 0 ? -6 : 1 - dow));
+  const endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate() + cycleDays - 1);
+  const edow = endDate.getDay();
+  const calEnd = new Date(endDate);
+  calEnd.setDate(endDate.getDate() + (edow === 0 ? 0 : 7 - edow));
+
+  // Extend calendar to show EPO days beyond cycle if needed
+  const maxEpoDay = epoItems.length ? Math.max(...epoItems) : 0;
+  if (maxEpoDay > cycleDays) {
+    const extraEnd = new Date(startDate);
+    extraEnd.setDate(startDate.getDate() + maxEpoDay - 1);
+    if (extraEnd > calEnd) {
+      const eew = extraEnd.getDay();
+      calEnd.setDate(extraEnd.getDate() + (eew === 0 ? 0 : 7 - eew));
+    }
+    // Extend dateMap too
+    for (let d = cycleDays; d < maxEpoDay; d++) {
+      const dt = new Date(startDate);
+      dt.setDate(startDate.getDate() + d);
+      dateMap[dt.toISOString().slice(0, 10)] = d + 1;
+    }
+  }
+
+  const weeks = [];
+  let cur = new Date(calStart);
+  while (cur <= calEnd) {
+    const week = [];
+    for (let i = 0; i < 7; i++) { week.push(new Date(cur)); cur.setDate(cur.getDate() + 1); }
+    weeks.push(week);
+  }
+
+  const phase =
+    protocol === 'DEMO1' ? getPhase_VEPEMB(cycleNum) :
+    protocol === 'DEMO2' ? getPhase_TASBEVA(cycleNum) :
+    '';
+
+  const legendHtml =
+    protocol === 'DEMO1' ? getLegend_VEPEMB(useFilg, useEpo, enabled) :
+    protocol === 'DEMO2' ? getLegend_TASBEVA(useFilg, useEpo, enabled) :
+    '';
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Suspended drugs notice
+  const allKeys = (PROTOCOL_DRUGS[protocol] || []).map(d => d.key);
+  const suspended = allKeys.filter(k => !enabled.has(k));
+  const suspendedHtml = suspended.length
+    ? `<div style="margin-bottom:10px;padding:6px 12px;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;font-size:0.76rem;color:#991b1b;">
+        \u26d4 F\u00e1rmacos <strong>suspendidos</strong> en este paciente: ${suspended.join(', ')} \u2013 excluidos del calendario por decisi\u00f3n cl\u00ednica.
+       </div>` : '';
+
+  // Edad calculada a partir de la fecha de nacimiento
+  let patientAge = '';
+  if (patientDOB) {
+    const dob = new Date(patientDOB + 'T00:00:00');
+    const now = new Date();
+    let age = now.getFullYear() - dob.getFullYear();
+    const m = now.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) age--;
+    if (age >= 0 && age < 130) patientAge = age + ' años';
+  }
+  // Fecha y hora de generación
+  const genNow = new Date();
+  const genStr = genNow.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' })
+               + ' ' + genNow.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+
+  const ORDER = ['ISA','DARA','BORT','RITUX','BEVA','VINB','CYCLO','DOXO','VINC','MITOX','BLEO','DEXA_HOSP','LENA','LONS','PROCARB','PRED','ETOP','DEXA_HOME40','DEXA_HOME20','FILG','EPO'];
+  const TAGS = {
+    'ISA':         ['tag-isa',       '\uD83C\uDFE5 ISATUXIMAB IV'],
+    'DARA':        ['tag-hospital',  '\uD83C\uDFE5 DARATUMUMAB SC'],
+    'BORT':        ['tag-bort',      '\uD83C\uDFE5 BORTEZOMIB SC'],
+    'VINB':        ['tag-vinb',      '\uD83C\uDFE5 MEDICAMENTO 1 IV'],
+    'CYCLO':       ['tag-cyclo',     '\uD83C\uDFE5 MEDICAMENTO 2 IV'],
+    'MITOX':       ['tag-mitox',     '\uD83C\uDFE5 MEDICAMENTO 5 IV'],
+    'BLEO':        ['tag-bleo',      '\uD83C\uDFE5 MEDICAMENTO 6 IV'],
+    'LENA':        ['tag-lena',      '\uD83D\uDC8A LENALIDOMIDA'],
+    'PROCARB':     ['tag-procarb',   '\uD83D\uDC8A MEDICAMENTO 4 ORAL'],
+    'PRED':        ['tag-pred',      '\uD83D\uDC8A MEDICAMENTO 3 ORAL'],
+    'ETOP':        ['tag-etop',      '\uD83D\uDC8A MEDICAMENTO 7 ORAL'],
+    'DEXA_HOSP':   ['tag-dexa-hosp',   '\uD83D\uDC8A DEXA 20mg · premedic.'],
+    'DEXA_HOME40': ['tag-dexa-home',   '\uD83D\uDD35 DEXA 40mg (2 c\u00e1ps.)'],
+    'DEXA_HOME20': ['tag-dexa-home20', '\uD83D\uDC9C DEXA 20mg (1 c\u00e1ps.)'],
+    'FILG':        ['tag-filg',      '\uD83D\uDC89 FILGRASTIM SC'],
+    'EPO':         ['tag-epo',       '\uD83D\uDC89 ERITROPOYETINA SC'],
+    'RITUX':       ['tag-ritux',     '\uD83C\uDFE5 RITUXIMAB IV'],
+    'DOXO':        ['tag-doxo',      '\uD83C\uDFE5 DOXORRUBICINA IV'],
+    'VINC':        ['tag-vinc',      '\uD83C\uDFE5 VINCRISTINA IV'],
+    'BEVA':        ['tag-beva',      '\uD83C\uDFE5 MEDICAMENTO 1 IV'],
+    'LONS':        ['tag-lons',      '\uD83D\uDC8A MEDICAMENTO 2 ORAL'],
+    'TRAST':       ['tag-trast',     '🏥 TRASTUZUMAB SC'],
+  };
+
+  let html = `
+    <div class="card demo-calendar-card" id="calendarCard">
+      <div class="demo-watermark">DEMO</div>
+      <div class="result-header-v2">
+        <!-- Zona 1: Hospital (logo + contacto) -->
+        <div class="rh-hospital">
+          <div class="rh-logo">
+            <img src="${getDemoLogoSrc()}" alt="Logo centro DEMO">
+          </div>
+          <div class="rh-contact">
+            <div class="rh-contact-line"><strong>Centro DEMO</strong></div>
+            <div class="rh-contact-line">Calendario de demostración</div>
+            <div class="rh-contact-line">Logo configurable por el usuario</div>
+          </div>
+        </div>
+
+        <!-- Zona 2: Paciente -->
+        <div class="rh-patient">
+          <div class="rh-patient-label">PACIENTE</div>
+          <div class="rh-patient-name">${patientName || '<span style="color:#cbd5e1;">— Sin nombre —</span>'}</div>
+          <div class="rh-patient-meta">
+            ${patientHC ? `<span class="rh-chip">HC: ${patientHC}</span>` : ''}
+            ${patientDOB ? `<span class="rh-chip">F. Nac: ${formatDate(patientDOB + 'T00:00:00')}</span>` : ''}
+            ${patientAge ? `<span class="rh-chip rh-chip-age">${patientAge}</span>` : ''}
+          </div>
+        </div>
+
+        <!-- Zona 3: Protocolo y ciclo -->
+        <div class="rh-protocol">
+          <div class="rh-proto-top">
+            <span class="protocol-badge">${protocol}</span>
+            <span class="rh-phase">${phase}</span>
+          </div>
+          <div class="rh-cycle-num">Ciclo <strong>${cycleNum}</strong></div>
+          <div class="rh-dates">
+            <span>📅 Día 1: <strong>${formatDate(startDateVal + 'T00:00:00')}</strong></span>
+            <span>📅 Día ${cycleDays}: <strong>${formatDate(endDate.toISOString())}</strong></span>
+          </div>
+          <div class="rh-gen">Generado: ${genStr}</div>
+        </div>
+
+        <!-- Acciones (solo pantalla) -->
+        <div class="btn-actions no-print rh-actions">
+          <button class="btn-edit-toggle" id="editToggleBtn" onclick="toggleEditMode()">\u270f\ufe0f Modo edici\u00f3n</button>
+          <button class="btn btn-outline" style="padding:7px 14px;font-size:0.8rem;" onclick="printCalendar()">\uD83D\uDDB8 Imprimir (A4)</button>
+        </div>
+      </div>
+      ${suspendedHtml}
+      <div class="edit-mode-bar" id="editModeBar">
+        <strong>\u270f\ufe0f Modo edici\u00f3n activo</strong>
+        <span>Arrastra cualquier medicamento a otro d\u00eda para reprogramarlo (por ejemplo, por festivo).</span>
+        <button class="btn-undo-last" id="undoLastBtn" onclick="undoLastMove()" disabled>&#8630; Deshacer \u00faltimo</button>
+        <button class="btn-reset-mods" id="resetModsBtn" onclick="resetModifications()">&#8634; Restablecer cambios</button>
+      </div>
+      <div class="legend">${legendHtml}</div>
+      <div class="calendar-wrap">
+        <table class="calendar">
+          <thead><tr><th>Lunes</th><th>Martes</th><th>Mi\u00e9rcoles</th><th>Jueves</th><th>Viernes</th><th>S\u00e1bado</th><th>Domingo</th></tr></thead>
+          <tbody>`;
+
+  // Pre-compute which weeks have active days (for compact rendering)
+  const weekHasMeds = weeks.map(week =>
+    week.some(dt => {
+      const k = dt.toISOString().slice(0, 10);
+      const cd = dateMap[k];
+      return cd !== undefined && cd <= cycleDays && (drugMap[cd] && drugMap[cd].length > 0);
+    })
+  );
+
+  weeks.forEach((week, wIdx) => {
+    const isEmpty = !weekHasMeds[wIdx];
+    html += isEmpty ? '<tr class="week-empty">' : '<tr>';
+    week.forEach((dt, idx) => {
+      const key     = dt.toISOString().slice(0, 10);
+      const cycDay  = dateMap[key];
+      const inCycle = cycDay !== undefined && cycDay <= cycleDays;
+      const isExtra = cycDay !== undefined && cycDay > cycleDays; // EPO beyond cycle
+      const inRange = inCycle || isExtra;
+      const isToday = key === today;
+      const isWknd  = idx >= 5;
+
+      let cellClass = 'day-cell';
+      if (!inRange)  cellClass += isWknd ? ' weekend empty' : ' empty';
+      else if (isExtra) cellClass += ' active-day';
+      else              cellClass += isToday ? ' active-day today' : ' active-day';
+
+      // Dim cell background if outside cycle but has EPO
+      const extraStyle = isExtra ? ' style="opacity:0.7;background:#faf5ff;"' : '';
+
+      const cellId = 'cell-' + key;
+      // CAPE rest days (15-21): show descanso badge
+      const isCapeRest = isCAPE && inCycle && cycDay > 14;
+      const capeActive  = isCAPE && inCycle && cycDay <= 14;
+      // ETOP: only days 2,3,(4) are active; day 1 and rest are blank
+      const etopActive = isETOP && inCycle && etopCfg && [2,3,...(etopCfg.day4?[4]:[])].includes(cycDay);
+      const etopBlank  = isETOP && inCycle && !etopActive;
+      let cellContent = '';
+      if (capeActive) {
+        const isDrag = document.body.classList.contains('drag-mode');
+        cellContent = buildCapeMedBlock(cycDay, c500b, c150b, c500d, c150d, isDrag, key);
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (isCapeRest) {
+        cellContent = `<div style="font-size:0.6rem;color:#64748b;font-style:italic;padding:2px 3px;">💤 descanso</div>`;
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (etopActive) {
+        const isDrag = document.body.classList.contains('drag-mode');
+        cellContent = buildEtopMealBlock(cycDay, etopCfg, isDrag, key);
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (etopBlank) {
+        cellContent = buildMedTags(key, cycDay, inRange, drugMap, TAGS, ORDER);
+      } else if (isVEPEMB && inCycle) {
+        // Pasamos oralDays via window._cs no disponible aún → se construye después; usamos rangos por defecto en 1ª render.
+        cellContent = buildVepembCellContent(cycDay, vepCfg, drugMap, TAGS, ORDER, key, {
+          vepMorning1to5: { has: d => d >= 1 && d <= 5 },
+          vepEtopMorning: { has: d => d >= 15 && d <= 19 }
+        });
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (isRCHOP && inCycle && rchopPred && (rchopPred.pred30 > 0 || rchopPred.pred10 > 0) && cycDay >= 2 && cycDay <= 5) {
+        cellContent = buildRchopCellContent(cycDay, rchopPred, drugMap, TAGS, ORDER, key);
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (isTASBEVA && inCycle && lonCfg && [1,2,3,4,5,8,9,10,11,12].includes(cycDay)) {
+        cellContent = buildTasbevaCell(cycDay, lonCfg, drugMap, TAGS, ORDER, key);
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else if (isHER2 && inCycle && tucaCfg) {
+        cellContent = buildHer2CellContent(cycDay, tucaCfg, c500b, c150b, c500d, c150d, drugMap, TAGS, ORDER, key, enabled);
+        cellContent += buildSupportMedTags(key, cycDay, drugMap, TAGS, ORDER);
+      } else {
+        cellContent = buildMedTags(key, cycDay, inRange, drugMap, TAGS, ORDER);
+      }
+
+      html += `<td data-date="${key}" data-cycday="${cycDay||''}"
+          ondragover="onDragOver(event)" ondrop="onDrop(event,'${key}')"
+          ondragenter="onDragEnter(this)" ondragleave="onDragLeave(this)">
+        <div class="${cellClass}" id="${cellId}"${extraStyle}>
+          <div class="day-header">
+            <span class="day-num">${dt.getDate()} ${dt.toLocaleDateString('es-ES',{month:'short'})}</span>
+            ${inCycle ? `<span class="cycle-day-badge"${isCapeRest ? ' style="background:#94a3b8"' : ''}>Día ${cycDay}</span>` : ''}
+            ${isExtra ? `<span class="cycle-day-badge" style="background:#6d28d9">Día ${cycDay}</span>` : ''}
+          </div>
+          ${cellContent}
+        </div>
+      </td>`;
+    });
+    html += '</tr>';
+  });
+
+  html += `</tbody></table></div>`;
+
+  // ── Notas importantes (página 1, justo después del calendario) ──
+  const noteItems =
+    protocol === 'DEMO1' ? getNotes_VEPEMB(enabled) :
+    protocol === 'DEMO2' ? getNotes_TASBEVA(enabled) :
+    '';
+
+  html += `
+  <div class="print-notes" style="margin-top:18px;padding:14px 16px;background:#fef9ec;border:1px solid #fde68a;border-radius:10px;font-size:0.82rem;color:#92400e;">
+    <strong>\u26a0\ufe0f Notas importantes:</strong>
+    <ul style="margin-top:6px;padding-left:18px;line-height:1.8;">
+      ${noteItems}
+      <li>Ante cualquier duda, consulte con su equipo sanitario de referencia.</li>
+    </ul>
+  </div>
+  </div>`; // cierre de div.card#calendarCard
+
+  // ── Resumen del ciclo (página 2) ──
+  const sumRows =
+    protocol === 'DEMO1' ? getSummaryRows_VEPEMB(useFilg, fs, fd, useEpo, epoItems, enabled, vepCfg) :
+    protocol === 'DEMO2' ? getSummaryRows_TASBEVA(useFilg, fs, fd, useEpo, epoItems, enabled, lonCfg) :
+    '';
+
+  html += `<div class="print-page2">
+    <div class="print-page2-spacer"></div>
+    <div class="summary">
+      <h3>\uD83D\uDCCB Resumen del ciclo</h3>
+      <table class="sum-table">
+        <thead><tr><th>Medicaci\u00f3n</th><th>D\u00edas del ciclo</th><th>Dosis</th><th>V\u00eda / Lugar</th></tr></thead>
+        <tbody>${sumRows}</tbody>
+      </table>
+    </div>
+  </div>`;
+
+  html += `<div class="demo-legal-note">Esta es una versión de demostración. No corresponde a ningún protocolo real ni debe usarse para decisiones clínicas.</div>`;
+
+  document.getElementById('result').innerHTML = html;
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Store global calendar state for drag-drop
+  window._cs = {
+    drugMap, dateMap, TAGS, ORDER,
+    modifications: {}, srcDrug: null, srcDate: null,
+    isCAPE, c500b, c150b, c500d, c150d,
+    isETOP, etopCfg,
+    isVEPEMB, vepCfg, isRCHOP, rchopPred, isTASBEVA, lonCfg, isHER2, tucaCfg, enabled, cycleDays,
+    oralDays: {}
+  };
+  // Inicializa los sets de días para cada categoría de bloque oral
+  const od = window._cs.oralDays;
+  if (isCAPE) {
+    od.capeBkfst  = new Set(); od.capeDinner = new Set();
+    for (let i = 1; i <= 14; i++) {
+      if (c500b > 0 || c150b > 0) od.capeBkfst.add(i);
+      if (c500d > 0 || c150d > 0) od.capeDinner.add(i);
+    }
+  }
+  if (isETOP && etopCfg) {
+    od.etopMorning = new Set([2, 3, ...(etopCfg.day4 ? [4] : [])]);
+    od.etopNight   = new Set(etopCfg.hasNight ? [2, 3] : []);
+  }
+  if (isVEPEMB && vepCfg) {
+    od.vepMorning1to5 = new Set();
+    od.vepEtopMorning = new Set();
+    if ((vepCfg.pred && (vepCfg.pred30 > 0 || vepCfg.pred10 > 0)) ||
+        (vepCfg.procarb && vepCfg.procarb50 > 0)) {
+      for (let i = 1; i <= 5; i++) od.vepMorning1to5.add(i);
+    }
+    if ((vepCfg.etop && (vepCfg.etop100 > 0 || vepCfg.etop50 > 0)) || vepCfg.onda) {
+      for (let i = 15; i <= 19; i++) od.vepEtopMorning.add(i);
+    }
+  }
+  if (isRCHOP && rchopPred && (rchopPred.pred30 > 0 || rchopPred.pred10 > 0)) {
+    od.rchopPred = new Set([2, 3, 4, 5]);
+  }
+  if (isTASBEVA && lonCfg) {
+    const lonDays = [1,2,3,4,5,8,9,10,11,12];
+    od.lonsBkfst  = new Set();
+    od.lonsDinner = new Set();
+    if (lonCfg.l20b > 0 || lonCfg.l15b > 0) lonDays.forEach(d => od.lonsBkfst.add(d));
+    if (lonCfg.l20d > 0 || lonCfg.l15d > 0) lonDays.forEach(d => od.lonsDinner.add(d));
+  }
+  // Turn off edit mode on regenerate
+  exitEditMode();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CELL RENDERING HELPER (used both at generate-time and after drag)
+// ─────────────────────────────────────────────────────────────────────────────
+function buildMedTags(dateKey, cycDay, inRange, drugMap, TAGS, ORDER) {
+  if (!inRange || !cycDay || !drugMap[cycDay]) return '';
+  const sorted = [...drugMap[cycDay]].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+  const isDraggable = document.body.classList.contains('drag-mode');
+  let html = '<div class="day-meds">';
+  sorted.forEach(drug => {
+    if (!TAGS[drug]) return;
+    const dragAttrs = isDraggable
+      ? ` draggable="true" ondragstart="onDragStart(event,'${dateKey}','${drug}')" ondragend="onDragEnd(event)"`
+      : '';
+    const delBtn = `<span class="del-btn" onclick="event.stopPropagation();deleteDrugFromDay('${dateKey}','${drug}')">×</span>`;
+    html += `<span class="med-tag ${TAGS[drug][0]}"${dragAttrs} data-drug="${drug}" data-srcdate="${dateKey}">${TAGS[drug][1]}${delBtn}</span>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+// Re-renders a single cell's med-tags (after a drag-drop)
+function renderCell(dateKey) {
+  const cs = window._cs;
+  if (!cs) return;
+  const cycDay = cs.dateMap[dateKey];
+  const cellDiv = document.getElementById('cell-' + dateKey);
+  if (!cellDiv) return;
+
+  const inRange = cycDay !== undefined;
+  // Remove old meal blocks or med tags
+  cellDiv.querySelectorAll('.day-meds, .cape-meal-block, .meal-pair-wrap').forEach(el => el.remove());
+
+  let newHtml = '';
+  const inCapeBkfst  = cs.oralDays && cs.oralDays.capeBkfst  && cs.oralDays.capeBkfst.has(cycDay);
+  const inCapeDinner = cs.oralDays && cs.oralDays.capeDinner && cs.oralDays.capeDinner.has(cycDay);
+  const inEtopMorn   = cs.oralDays && cs.oralDays.etopMorning && cs.oralDays.etopMorning.has(cycDay);
+  const inEtopNight  = cs.oralDays && cs.oralDays.etopNight   && cs.oralDays.etopNight.has(cycDay);
+  const inLonsB      = cs.oralDays && cs.oralDays.lonsBkfst   && cs.oralDays.lonsBkfst.has(cycDay);
+  const inLonsD      = cs.oralDays && cs.oralDays.lonsDinner  && cs.oralDays.lonsDinner.has(cycDay);
+  if (cs.isCAPE && cycDay && (inCapeBkfst || inCapeDinner)) {
+    const isDrag = document.body.classList.contains('drag-mode');
+    newHtml = buildCapeMedBlock(cycDay, cs.c500b, cs.c150b, cs.c500d, cs.c150d, isDrag, dateKey, cs.oralDays);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isCAPE && cycDay) {
+    // Día CAPE sin pastillas (movidas fuera) → solo soporte
+    newHtml = buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isETOP && cs.etopCfg && cycDay && (inEtopMorn || inEtopNight)) {
+    const isDrag = document.body.classList.contains('drag-mode');
+    newHtml = buildEtopMealBlock(cycDay, cs.etopCfg, isDrag, dateKey, cs.oralDays);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isETOP && cs.etopCfg && cycDay) {
+    newHtml = buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isVEPEMB && cs.vepCfg && cycDay) {
+    newHtml = buildVepembCellContent(cycDay, cs.vepCfg, cs.drugMap, cs.TAGS, cs.ORDER, dateKey, cs.oralDays);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isRCHOP && cs.rchopPred && cycDay &&
+             cs.oralDays && cs.oralDays.rchopPred && cs.oralDays.rchopPred.has(cycDay)) {
+    newHtml = buildRchopCellContent(cycDay, cs.rchopPred, cs.drugMap, cs.TAGS, cs.ORDER, dateKey);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isRCHOP && cs.rchopPred && cycDay) {
+    // Día RCHOP sin bloque pred (movido fuera) → solo tags hospital/soporte normales
+    newHtml = buildMedTags(dateKey, cycDay, true, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isTASBEVA && cs.lonCfg && cycDay && (inLonsB || inLonsD || (cs.drugMap[cycDay] || []).includes('BEVA'))) {
+    newHtml = buildTasbevaCell(cycDay, cs.lonCfg, cs.drugMap, cs.TAGS, cs.ORDER, dateKey, cs.oralDays);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else if (cs.isHER2 && cs.tucaCfg && cycDay) {
+    newHtml = buildHer2CellContent(cycDay, cs.tucaCfg, cs.c500b, cs.c150b, cs.c500d, cs.c150d, cs.drugMap, cs.TAGS, cs.ORDER, dateKey, cs.enabled);
+    newHtml += buildSupportMedTags(dateKey, cycDay, cs.drugMap, cs.TAGS, cs.ORDER);
+  } else {
+    newHtml = buildMedTags(dateKey, cycDay, inRange, cs.drugMap, cs.TAGS, cs.ORDER);
+  }
+  if (newHtml) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = newHtml;
+    // Append all children
+    while (tmp.firstChild) cellDiv.appendChild(tmp.firstChild);
+  }
+
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DRAG & DROP HANDLERS
+// ─────────────────────────────────────────────────────────────────────────────
+function onDragStart(event, dateKey, drug) {
+  if (!document.body.classList.contains('drag-mode')) {
+    event.preventDefault(); return;
+  }
+  event.stopPropagation();
+  window._cs.srcDrug = drug;
+  window._cs.srcMealDrugs = null;
+  window._cs.srcDate = dateKey;
+  event.currentTarget.classList.add('dragging');
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', drug + '|' + dateKey);
+  // Forzar ghost del bloque visual completo
+  try {
+    const r = event.currentTarget.getBoundingClientRect();
+    event.dataTransfer.setDragImage(event.currentTarget, r.width/2, r.height/2);
+  } catch(e) {}
+}
+
+// Drag para bloques de medicación oral (meal blocks)
+function onMealDragStart(event, dateKey, drugList, category) {
+  if (!document.body.classList.contains('drag-mode')) {
+    event.preventDefault(); return;
+  }
+  event.stopPropagation();
+  window._cs.srcDrug = '__MEAL__';
+  window._cs.srcMealDrugs = drugList; // array de drug codes
+  window._cs.srcMealCategory = category || null;
+  window._cs.srcDate = dateKey;
+  event.currentTarget.classList.add('dragging');
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', '__MEAL__|' + dateKey);
+  // Forzar ghost del bloque visual completo (con todas las pastillas)
+  try {
+    const r = event.currentTarget.getBoundingClientRect();
+    event.dataTransfer.setDragImage(event.currentTarget, r.width/2, r.height/2);
+  } catch(e) {}
+}
+
+function onDragEnd(event) {
+  event.currentTarget.classList.remove('dragging');
+}
+
+// Eliminar un fármaco de un día (botón ×)
+function deleteDrugFromDay(dateKey, drug) {
+  const cs = window._cs;
+  if (!cs) return;
+  const cycDay = cs.dateMap[dateKey];
+  if (!cycDay) return;
+  if (cs.drugMap[cycDay]) {
+    cs.drugMap[cycDay] = cs.drugMap[cycDay].filter(d => d !== drug);
+    if (cs.drugMap[cycDay].length === 0) delete cs.drugMap[cycDay];
+  }
+  renderCell(dateKey);
+}
+
+// Eliminar todos los fármacos de un meal block de un día
+function deleteMealFromDay(dateKey, drugList, category) {
+  const cs = window._cs;
+  if (!cs) return;
+  const cycDay = cs.dateMap[dateKey];
+  if (!cycDay) return;
+  if (cs.drugMap[cycDay]) {
+    cs.drugMap[cycDay] = cs.drugMap[cycDay].filter(d => !drugList.includes(d));
+    if (cs.drugMap[cycDay].length === 0) delete cs.drugMap[cycDay];
+  }
+  // Quitar el día del(los) set(s) de oralDays correspondiente(s)
+  if (category && cs.oralDays) {
+    category.split('+').forEach(cat => {
+      if (cs.oralDays[cat]) cs.oralDays[cat].delete(cycDay);
+    });
+  }
+  renderCell(dateKey);
+  recomputeWeekEmpty(dateKey);
+}
+
+// Elimina solo UNA toma (desayuno O cena) de un día, dejando la otra intacta.
+// Usado cuando hay wrapper compuesto pero se quiere eliminar individualmente.
+function deleteSingleMealToma(dateKey, drugList, category) {
+  const cs = window._cs;
+  if (!cs) return;
+  const cycDay = cs.dateMap[dateKey];
+  if (!cycDay) return;
+  // Eliminar solo el set indicado (categoria simple, no compuesta)
+  if (category && cs.oralDays && cs.oralDays[category]) {
+    cs.oralDays[category].delete(cycDay);
+  }
+  renderCell(dateKey);
+  recomputeWeekEmpty(dateKey);
+}
+
+function onDragOver(event) {
+  if (!document.body.classList.contains('drag-mode')) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+}
+
+function onDragEnter(td) {
+  if (!document.body.classList.contains('drag-mode')) return;
+  const cell = td.querySelector ? td.querySelector('.day-cell') : td;
+  if (cell && cell.classList.contains('active-day')) cell.classList.add('drag-over');
+}
+
+function onDragLeave(td) {
+  const cell = td.querySelector ? td.querySelector('.day-cell') : td;
+  if (cell) cell.classList.remove('drag-over');
+}
+
+function onDrop(event, destDateKey) {
+  event.preventDefault();
+  if (!document.body.classList.contains('drag-mode')) return;
+
+  const td = event.currentTarget;
+  const cell = td.querySelector('.day-cell');
+  if (cell) cell.classList.remove('drag-over');
+
+  const cs = window._cs;
+  if (!cs || !cs.srcDrug || !cs.srcDate) return;
+
+  const srcDate  = cs.srcDate;
+  const drug     = cs.srcDrug;
+  const srcDay   = cs.dateMap[srcDate];
+  const destDay  = cs.dateMap[destDateKey];
+
+  // Must drop onto a valid in-cycle cell, not the same cell
+  if (!destDay || srcDate === destDateKey) { cs.srcDrug = cs.srcDate = null; return; }
+
+  // Meal block drag: move all drugs in the block
+  if (drug === '__MEAL__' && cs.srcMealDrugs && cs.srcMealDrugs.length) {
+    const movedDrugs = cs.srcMealDrugs.slice();
+    const category = cs.srcMealCategory;
+    cs.srcMealDrugs.forEach(d => {
+      if (cs.drugMap[srcDay]) {
+        cs.drugMap[srcDay] = cs.drugMap[srcDay].filter(x => x !== d);
+        if (cs.drugMap[srcDay].length === 0) delete cs.drugMap[srcDay];
+      }
+      if (!cs.drugMap[destDay]) cs.drugMap[destDay] = [];
+      if (!cs.drugMap[destDay].includes(d)) cs.drugMap[destDay].push(d);
+    });
+    // Mover el día en el(los) set(s) de oralDays correspondientes
+    // category puede ser simple ('lonsBkfst') o compuesta ('lonsBkfst+lonsDinner')
+    if (category && cs.oralDays) {
+      category.split('+').forEach(cat => {
+        if (cs.oralDays[cat]) {
+          cs.oralDays[cat].delete(srcDay);
+          cs.oralDays[cat].add(destDay);
+        }
+      });
+    }
+    pushMoveHistory({ type: 'meal', drugs: movedDrugs, srcDay, destDay, srcDate, destDateKey, category });
+    renderCell(srcDate);
+    renderCell(destDateKey);
+    recomputeWeekEmpty(srcDate);
+    recomputeWeekEmpty(destDateKey);
+    cs.srcDrug = cs.srcDate = cs.srcMealDrugs = cs.srcMealCategory = null;
+    return;
+  }
+
+  // Remove drug from source day
+  if (cs.drugMap[srcDay]) {
+    cs.drugMap[srcDay] = cs.drugMap[srcDay].filter(d => d !== drug);
+    if (cs.drugMap[srcDay].length === 0) delete cs.drugMap[srcDay];
+  }
+
+  // Add drug to dest day
+  if (!cs.drugMap[destDay]) cs.drugMap[destDay] = [];
+  if (!cs.drugMap[destDay].includes(drug)) cs.drugMap[destDay].push(drug);
+
+  pushMoveHistory({ type: 'single', drugs: [drug], srcDay, destDay, srcDate, destDateKey });
+
+  // Re-render both cells
+  renderCell(srcDate);
+  renderCell(destDateKey);
+  recomputeWeekEmpty(srcDate);
+  recomputeWeekEmpty(destDateKey);
+
+  cs.srcDrug = cs.srcDate = null;
+}
+
+// Reevalúa si la fila (semana) que contiene esta celda debe ser .week-empty o no
+function recomputeWeekEmpty(dateKey) {
+  const cellDiv = document.getElementById('cell-' + dateKey);
+  if (!cellDiv) return;
+  const tr = cellDiv.closest('tr');
+  if (!tr) return;
+  const hasContent = tr.querySelector('.day-meds, .cape-meal-block, .meal-pair-wrap');
+  if (hasContent) tr.classList.remove('week-empty');
+  else tr.classList.add('week-empty');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EDIT MODE TOGGLE
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleEditMode() {
+  const active = document.body.classList.toggle('drag-mode');
+  const btn = document.getElementById('editToggleBtn');
+  const bar = document.getElementById('editModeBar');
+  if (btn) btn.classList.toggle('active', active);
+  if (bar) bar.classList.toggle('visible', active);
+  // Re-add/remove draggable attrs on all tags
+  refreshDraggableAttrs(active);
+}
+
+function exitEditMode() {
+  document.body.classList.remove('drag-mode');
+  const btn = document.getElementById('editToggleBtn');
+  const bar = document.getElementById('editModeBar');
+  if (btn) btn.classList.remove('active');
+  if (bar) bar.classList.remove('visible');
+}
+
+function refreshDraggableAttrs(enable) {
+  const cs = window._cs;
+  if (!cs) return;
+  // Para protocolos con bloques orales, re-renderizamos TODAS las celdas
+  // (no solo los días por defecto), porque los días pueden haberse movido
+  if (cs.isCAPE || cs.isETOP || cs.isVEPEMB || cs.isRCHOP || cs.isTASBEVA || cs.isHER2) {
+    Object.keys(cs.dateMap).forEach(dateKey => renderCell(dateKey));
+    return;
+  }
+  document.querySelectorAll('.med-tag[data-drug]').forEach(tag => {
+    const drug    = tag.dataset.drug;
+    const srcdate = tag.dataset.srcdate;
+    if (enable) {
+      tag.setAttribute('draggable', 'true');
+      tag.setAttribute('ondragstart', `onDragStart(event,'${srcdate}','${drug}')`);
+      tag.setAttribute('ondragend', 'onDragEnd(event)');
+    } else {
+      tag.removeAttribute('draggable');
+      tag.removeAttribute('ondragstart');
+      tag.removeAttribute('ondragend');
+    }
+  });
+}
+
+function resetModifications() {
+  // Regenerate calendar from scratch
+  window._moveHistory = [];
+  updateUndoBtn();
+  generateCalendar();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PRINT (landscape only)
+// ─────────────────────────────────────────────────────────────────────────────
+function printCalendar() {
+  window.print();
+}
+
+function formatDate(isoStr) {
+  const locale = (window._lang === 'ar') ? 'ar-SA'
+               : (window._lang === 'en') ? 'en-GB'
+               : (window._lang === 'de') ? 'de-DE' : 'es-ES';
+  return new Date(isoStr).toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// UNDO LAST MOVE
+// ═════════════════════════════════════════════════════════════════════════════
+window._moveHistory = window._moveHistory || [];
+
+function pushMoveHistory(entry) {
+  window._moveHistory.push(entry);
+  updateUndoBtn();
+}
+
+function updateUndoBtn() {
+  const btn = document.getElementById('undoLastBtn');
+  if (btn) btn.disabled = (window._moveHistory.length === 0);
+}
+
+function undoLastMove() {
+  const cs = window._cs;
+  if (!cs || !window._moveHistory.length) return;
+  const last = window._moveHistory.pop();
+  // Reverse: move drugs from destDay back to srcDay
+  last.drugs.forEach(d => {
+    if (cs.drugMap[last.destDay]) {
+      cs.drugMap[last.destDay] = cs.drugMap[last.destDay].filter(x => x !== d);
+      if (cs.drugMap[last.destDay].length === 0) delete cs.drugMap[last.destDay];
+    }
+    if (!cs.drugMap[last.srcDay]) cs.drugMap[last.srcDay] = [];
+    if (!cs.drugMap[last.srcDay].includes(d)) cs.drugMap[last.srcDay].push(d);
+  });
+  renderCell(last.srcDate);
+  renderCell(last.destDateKey);
+  updateUndoBtn();
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// PLANTILLAS DE PACIENTE (multi-paciente, localStorage)
+// ═════════════════════════════════════════════════════════════════════════════
+const TEMPLATE_STORE_KEY = 'oncocal_templates_v1';
+
+function getTemplates() {
+  try { return JSON.parse(localStorage.getItem(TEMPLATE_STORE_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+function saveTemplatesRaw(obj) {
+  localStorage.setItem(TEMPLATE_STORE_KEY, JSON.stringify(obj));
+}
+
+function refreshTemplateSelect() {
+  const sel = document.getElementById('templateSelect');
+  if (!sel) return;
+  const current = sel.value;
+  const tpls = getTemplates();
+  sel.innerHTML = '';
+  const opt0 = document.createElement('option');
+  opt0.value = '';
+  opt0.textContent = '— Nuevo paciente —';
+  sel.appendChild(opt0);
+  Object.keys(tpls).sort().forEach(k => {
+    const o = document.createElement('option');
+    o.value = k; o.textContent = k;
+    sel.appendChild(o);
+  });
+  if (current && tpls[current]) sel.value = current;
+}
+
+function saveTemplate() {
+  const name = document.getElementById('patientName').value.trim();
+  if (!name) {
+    alert('Introduce el nombre del paciente antes de guardar.');
+    return;
+  }
+  const tpls = getTemplates();
+  tpls[name] = {
+    name,
+    hc:   document.getElementById('patientHC').value,
+    dob:  document.getElementById('patientDOB').value,
+    protocol: document.getElementById('protocol').value,
+    savedAt: new Date().toISOString()
+  };
+  saveTemplatesRaw(tpls);
+  refreshTemplateSelect();
+  document.getElementById('templateSelect').value = name;
+  alert('Paciente guardado: ' + name);
+}
+
+function loadTemplate(key) {
+  if (!key) return;
+  const tpls = getTemplates();
+  const t = tpls[key];
+  if (!t) return;
+  document.getElementById('patientName').value = t.name || '';
+  document.getElementById('patientHC').value = t.hc || '';
+  document.getElementById('patientDOB').value = t.dob || '';
+  const proto = (t.protocol === 'DEMO2') ? 'DEMO2' : 'DEMO1';
+  document.getElementById('protocol').value = proto;
+  onProtocolChange();
+}
+
+function deleteTemplate() {
+  const sel = document.getElementById('templateSelect');
+  const key = sel.value;
+  if (!key) return;
+  const msg = '¿Borrar el paciente "' + key + '"?';
+  if (!confirm(msg)) return;
+  const tpls = getTemplates();
+  delete tpls[key];
+  saveTemplatesRaw(tpls);
+  refreshTemplateSelect();
+  document.getElementById('templateSelect').value = '';
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// VISTA PREVIA A4
+// ═════════════════════════════════════════════════════════════════════════════
+function togglePrintPreview(on) {
+  document.body.classList.toggle('preview-a4', !!on);
+  if (on) document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.body.classList.contains('preview-a4')) {
+    togglePrintPreview(false);
+    document.getElementById('previewToggle').checked = false;
+  }
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// ALTO CONTRASTE
+// ═════════════════════════════════════════════════════════════════════════════
+function applyContrast(mode) {
+  document.body.classList.toggle('high-contrast', mode === 'high');
+  try { localStorage.setItem('oncocal_contrast', mode); } catch(e) {}
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// LOGO DEMO (personalizable)
+// ═════════════════════════════════════════════════════════════════════════════
+const DEMO_LOGO_STORAGE_KEY = 'oncocal_demo_logo_dataurl';
+window.DEMO_LOGO_FALLBACK = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110">' +
+  '<rect x="2" y="2" width="316" height="106" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>' +
+  '<text x="160" y="50" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#334155" text-anchor="middle">LOGO DEMO</text>' +
+  '<text x="160" y="78" font-family="Arial, sans-serif" font-weight="500" font-size="14" fill="#64748b" text-anchor="middle">Suba PNG, JPG, WEBP o SVG</text>' +
+  '</svg>'
+);
+
+function getDemoLogoSrc() {
+  const logo = window.demoLogoDataUrl || '';
+  return logo || window.DEMO_LOGO_FALLBACK;
+}
+
+function updateDemoLogoStatus() {
+  const status = document.getElementById('demoLogoStatus');
+  if (!status) return;
+  status.textContent = window.demoLogoDataUrl
+    ? 'Logo cargado correctamente. Se usará en todos los calendarios DEMO.'
+    : 'No hay logo cargado. Se usará un logo DEMO por defecto.';
+}
+
+function handleDemoLogoUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  const validTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml'];
+  if (!validTypes.includes(file.type)) {
+    alert('Formato no válido. Use PNG, JPG, WEBP o SVG.');
+    event.target.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    window.demoLogoDataUrl = String(reader.result || '');
+    try { localStorage.setItem(DEMO_LOGO_STORAGE_KEY, window.demoLogoDataUrl); } catch (e) {}
+    updateDemoLogoStatus();
+  };
+  reader.readAsDataURL(file);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INICIALIZACIÓN
+// ═════════════════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Restaurar contraste
+  let contrast = 'normal';
+  try { contrast = localStorage.getItem('oncocal_contrast') || 'normal'; } catch(e) {}
+  const csel = document.getElementById('contrastSelect');
+  if (csel) csel.value = contrast;
+  applyContrast(contrast);
+  // Cargar plantillas
+  refreshTemplateSelect();
+
+  try { window.demoLogoDataUrl = localStorage.getItem(DEMO_LOGO_STORAGE_KEY) || ''; } catch(e) { window.demoLogoDataUrl = ''; }
+  updateDemoLogoStatus();
+  const protoSel = document.getElementById('protocol');
+  if (protoSel) protoSel.value = 'DEMO1';
+});
+
+// Hook tras generateCalendar: limpiar historial de undo
+(function() {
+  const origGen = window.generateCalendar;
+  if (typeof origGen === 'function') {
+    window.generateCalendar = function() {
+      const r = origGen.apply(this, arguments);
+      window._moveHistory = [];
+      updateUndoBtn();
+      return r;
+    };
+  }
+})();
+</script>
+</body>
+</html>
